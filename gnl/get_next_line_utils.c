@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:50:56 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/20 12:22:07 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/23 17:02:24 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,26 @@ void	*ft_calloc(size_t count, size_t size)
 	return (punt);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *line, char *buffer, int readline)
 {
 	char	*ptr;
 	int		i;
 	int		j;
 
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	ptr = (char *)malloc ((i + j + 1) * sizeof(char));
-	if (ptr == NULL)
+	if (!line)
+		line = ft_calloc(1, 1);
+	ptr = malloc ((ft_strlen(line) + ft_strlen(buffer) + 1) * sizeof(char));
+	if (!ptr)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[i])
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		ptr[i] = s2[j];
-		i++;
-		j++;
-	}
+	while (line[j])
+		ptr[i++] = line[j++];
+	j = 0;
+	while (j < readline)
+		ptr[i++] = buffer[j++];
 	ptr[i] = '\0';
-	free((void *)s1);
+	free(line);
 	return (ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/23 13:00:58 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/23 17:00:40 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,7 @@ char	*ft_readfd(int fd, char *line)
 	char	*buffer;
 	char	*auxiliar;
 
-	if (!line)
-	{
-		line = malloc (1 * sizeof(char));
-		if (!line)
-			return (NULL);
-	}
-	if (ft_strlen(line) == 0)
-		return (free(line), NULL);
-	buffer = ft_calloc ((BUFFER_SIZE + 1), sizeof(char));
+	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
 		return (NULL);
 	readline = 1;
@@ -55,11 +47,16 @@ char	*ft_readfd(int fd, char *line)
 	{
 		readline = read(fd, buffer, BUFFER_SIZE);
 		if (readline == -1)
-			return (free(line), NULL);
+		{
+			free(line);
+			return (NULL);
+		}
 		auxiliar = line;
-		line = ft_strjoin(auxiliar, buffer);
+		line = ft_strjoin(auxiliar, buffer, readline);
 	}
 	free(buffer);
+	if (ft_strlen(line) == 0)
+		return (free(line), NULL);
 	return (line);
 }
 
@@ -108,17 +105,17 @@ char	*get_next_line(int fd)
 /*void	leaks(void)
 {
 	system("leaks a.out");
-}
+}*/
+
 int	main(void)
 {
 	char	*buffer;
 	int		fd;
 
-	atexit(leaks);
-	fd = open ("text.txt", 0);
+	fd = open ("text.txt", O_RDWR);
 	buffer = get_next_line(fd);
 	printf ("%s", buffer);
 	free(buffer);
 }
-gcc -Wall -Wextra -Werror BUFFER_SIZE=10 
+/*gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
 get_next_line.c get_next_line_utils.c*/

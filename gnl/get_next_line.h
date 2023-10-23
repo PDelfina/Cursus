@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 12:17:01 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/17 11:54:28 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/23 16:53:40 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *line, char *buffer, int readline);
 char	*ft_strchr(const char *s, int c);
+char	*ft_readfd(int fd, char *line);
+char	*ft_clean(char *line, char *buffer);
+char	*get_the_line(char *line);
 void	*ft_calloc(size_t count, size_t size);
-void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *s);
-
 #endif
