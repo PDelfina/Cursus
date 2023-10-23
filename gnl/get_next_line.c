@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/17 13:54:59 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/23 13:00:58 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,33 @@ char	*ft_readfd(int fd, char *line)
 {
 	int		readline;
 	char	*buffer;
-	int		i;
+	char	*auxiliar;
 
-	i = 0;
 	if (!line)
 	{
 		line = malloc (1 * sizeof(char));
 		if (!line)
 			return (NULL);
 	}
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (ft_strlen(line) == 0)
+		return (free(line), NULL);
+	buffer = ft_calloc ((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
 		return (NULL);
 	readline = 1;
 	while (!(ft_strchr(buffer, '\n') && readline > 0))
 	{
 		readline = read(fd, buffer, BUFFER_SIZE);
-		buffer[readline] = '\0';
-		line = ft_strjoin(line, buffer);
+		if (readline == -1)
+			return (free(line), NULL);
+		auxiliar = line;
+		line = ft_strjoin(auxiliar, buffer);
 	}
 	free(buffer);
 	return (line);
 }
 
-char	*get_line(char *line)
+char	*get_the_line(char *line)
 {
 	int		i;
 	int		j;
@@ -87,21 +90,35 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*aux;
 
+	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
+	{
+		free(buffer);
+		buffer = NULL;
+		return (NULL);
+	}
 	buffer = ft_readfd(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	line = get_line(buffer);
+	line = get_the_line(buffer);
 	aux = ft_clean(line, buffer);
 	buffer = aux;
 	return (line);
 }
 
-/*int	main(void)
+/*void	leaks(void)
+{
+	system("leaks a.out");
+}
+int	main(void)
 {
 	char	*buffer;
 	int		fd;
 
-	fd = open ("text.txt", O_RDONLY);
+	atexit(leaks);
+	fd = open ("text.txt", 0);
 	buffer = get_next_line(fd);
 	printf ("%s", buffer);
-}*/
+	free(buffer);
+}
+gcc -Wall -Wextra -Werror BUFFER_SIZE=10 
+get_next_line.c get_next_line_utils.c*/

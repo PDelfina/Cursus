@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:50:56 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/17 13:43:07 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/20 12:22:07 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	ptr[i] = '\0';
+	free((void *)s1);
 	return (ptr);
 }
 
@@ -64,6 +65,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -87,18 +90,4 @@ char	*ft_strchr(const char *s, int c)
 	if (c1 == '\0' && s1[i] == '\0')
 		return ((char *)&s[i]);
 	return (0);
-}
-
-char	*ft_strlcpy(char	*dst, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
 }
