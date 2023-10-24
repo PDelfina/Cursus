@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:50:56 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/24 12:44:46 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:34:04 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ char	*ft_strjoin(char *line, char *buffer)
 	return (ptr);
 }
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!s)

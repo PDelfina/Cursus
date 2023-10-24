@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 12:17:01 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/24 10:25:49 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:38:36 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ char	*ft_readfd(int fd, char *line);
 char	*ft_clean(char *line, char *buffer);
 char	*get_the_line(char *line);
 void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
+int		ft_strlen(char *s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/24 13:47:34 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:48:32 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ char	*ft_clean(char *line, char *buffer)
 	n = ft_strlen(buffer);
 	i = 0;
 	size = n - j;
+	if (!buffer)
+		return (free(buffer), NULL);
+	if (size <= 0)
+		return (free(buffer), NULL);
 	aux = ft_calloc ((size + 1), sizeof(char));
 	if (!aux)
 		return (NULL);
@@ -37,6 +41,7 @@ char	*ft_readfd(int fd, char *line)
 {
 	int		readline;
 	char	*buffer;
+	char	*aux;
 
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
@@ -46,8 +51,12 @@ char	*ft_readfd(int fd, char *line)
 	{
 		readline = read(fd, buffer, BUFFER_SIZE);
 		if (readline == -1)
-			return (free(line), NULL);
-		line = ft_strjoin(line, buffer);
+		{
+			free(line);
+			return (NULL);
+		}
+		aux = line;
+		line = ft_strjoin(aux, buffer);
 		if (!line)
 			return (free(buffer), NULL);
 	}
@@ -73,6 +82,7 @@ char	*get_the_line(char *line)
 		dest[i] = line[i];
 		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }
 
@@ -80,7 +90,6 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	char		*line;
-	char		*aux;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
 	{
@@ -89,11 +98,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	buffer = ft_readfd(fd, buffer);
-	if (buffer == NULL)
+	if (!buffer)
 		return (NULL);
 	line = get_the_line(buffer);
-	aux = ft_clean(line, buffer);
-	buffer = aux;
+	buffer = ft_clean(line, buffer);
 	return (line);
 }
 
@@ -101,7 +109,7 @@ char	*get_next_line(int fd)
 {
 	system("leaks a.out");
 	atexit(leaks);
-}*/
+}
 
 int	main(void)
 {
@@ -113,5 +121,5 @@ int	main(void)
 	printf ("%s", buffer);
 	free(buffer);
 }
-/*gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
 get_next_line.c get_next_line_utils.c*/
