@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/23 17:00:40 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/24 13:47:34 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*ft_readfd(int fd, char *line)
 {
 	int		readline;
 	char	*buffer;
-	char	*auxiliar;
 
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
@@ -47,16 +46,12 @@ char	*ft_readfd(int fd, char *line)
 	{
 		readline = read(fd, buffer, BUFFER_SIZE);
 		if (readline == -1)
-		{
-			free(line);
-			return (NULL);
-		}
-		auxiliar = line;
-		line = ft_strjoin(auxiliar, buffer, readline);
+			return (free(line), NULL);
+		line = ft_strjoin(line, buffer);
+		if (!line)
+			return (free(buffer), NULL);
 	}
 	free(buffer);
-	if (ft_strlen(line) == 0)
-		return (free(line), NULL);
 	return (line);
 }
 
@@ -94,7 +89,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	buffer = ft_readfd(fd, buffer);
-	if (!buffer)
+	if (buffer == NULL)
 		return (NULL);
 	line = get_the_line(buffer);
 	aux = ft_clean(line, buffer);
@@ -105,6 +100,7 @@ char	*get_next_line(int fd)
 /*void	leaks(void)
 {
 	system("leaks a.out");
+	atexit(leaks);
 }*/
 
 int	main(void)
