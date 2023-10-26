@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:50:56 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/24 16:34:04 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/26 11:51:31 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	*ft_calloc(size_t count, size_t size)
 	int		n;
 
 	i = 0;
-	punt = malloc(count * size);
+	n = (count * size);
+	punt = malloc(n);
 	if (punt == NULL || punt < 0)
 		return (NULL);
-	n = (count * size);
 	while (i < n)
 	{
-		((unsigned char *)punt)[i] = 0;
+		((unsigned char *)punt)[i] = '\0';
 		i++;
 	}
 	return (punt);
 }
 
-char	*ft_strjoin(char *line, char *buffer)
+char	*ft_strjoin(char *line, char *buffer, int readline)
 {
 	char	*ptr;
 	int		i;
@@ -41,17 +41,15 @@ char	*ft_strjoin(char *line, char *buffer)
 		line = ft_calloc(1, 1);
 	if (ft_strlen(buffer) == 0)
 		return (free(line), NULL);
-	ptr = ft_calloc((ft_strlen(line) + ft_strlen(buffer) + 1), sizeof(char));
+	ptr = malloc(ft_strlen(line) + ft_strlen(buffer) + 1);
 	if (!ptr)
-		return (free(line), NULL);
+		return (NULL);
 	i = 0;
 	j = 0;
-	while (line[i])
-	{
-		ptr[i] = line[i];
-		i++;
-	}
-	while (buffer[j])
+	while (line[j])
+		ptr[i++] = line[j++];
+	j = 0;
+	while (j < readline)
 		ptr[i++] = buffer[j++];
 	ptr[i] = '\0';
 	free(line);
@@ -70,22 +68,20 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int		i;
-	char	*s1;
-	char	c1;
 
 	i = 0;
-	s1 = ((char *)s);
-	c1 = ((char )c);
-	while (s1[i])
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 	{
-		if (s1[i] == c1)
+		if (s[i] == c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	if (c1 == '\0' && s1[i] == '\0')
+	if (c == '\0')
 		return ((char *)&s[i]);
 	return (0);
 }

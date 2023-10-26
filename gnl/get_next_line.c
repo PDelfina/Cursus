@@ -6,48 +6,22 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/24 16:48:32 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/26 11:52:26 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_clean(char *line, char *buffer)
-{
-	int		j;
-	int		n;
-	int		i;
-	int		size;
-	char	*aux;
-
-	j = ft_strlen(line);
-	n = ft_strlen(buffer);
-	i = 0;
-	size = n - j;
-	if (!buffer)
-		return (free(buffer), NULL);
-	if (size <= 0)
-		return (free(buffer), NULL);
-	aux = ft_calloc ((size + 1), sizeof(char));
-	if (!aux)
-		return (NULL);
-	while (j < n)
-		aux[i++] = buffer[j++];
-	free(buffer);
-	return (aux);
-}
-
 char	*ft_readfd(int fd, char *line)
 {
 	int		readline;
 	char	*buffer;
-	char	*aux;
 
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
 		return (NULL);
 	readline = 1;
-	while (!(ft_strchr(buffer, '\n') && readline > 0))
+	while (!ft_strchr(buffer, '\n') && readline > 0)
 	{
 		readline = read(fd, buffer, BUFFER_SIZE);
 		if (readline == -1)
@@ -55,8 +29,7 @@ char	*ft_readfd(int fd, char *line)
 			free(line);
 			return (NULL);
 		}
-		aux = line;
-		line = ft_strjoin(aux, buffer);
+		line = ft_strjoin(line, buffer, readline);
 		if (!line)
 			return (free(buffer), NULL);
 	}
@@ -66,24 +39,55 @@ char	*ft_readfd(int fd, char *line)
 
 char	*get_the_line(char *line)
 {
-	int		i;
 	int		j;
 	char	*dest;
 
-	i = 0;
 	j = 0;
+	if (!line)
+		return (NULL);
 	while (line[j] != '\n' && line[j])
 		j++;
-	dest = ft_calloc (j + 2, sizeof(char));
+	j++;
+	dest = ft_calloc (j + 1, 1);
 	if (!dest)
 		return (NULL);
-	while (i <= j)
+	dest[j] = '\0';
+	j = 0;
+	while (line[j] != '\n' && line[j] != '\0')
 	{
-		dest[i] = line[i];
-		i++;
+		dest[j] = line[j];
+		j++;
 	}
-	dest[i] = '\0';
+	if (line[j] == '\n')
+	{
+		dest[j] = '\n';
+		j++;
+	}
+	dest[j] = '\0';
 	return (dest);
+}
+
+char	*ft_clean(char *buffer)
+{
+	int		j;
+	int		i;
+	char	*aux;
+
+	if (!buffer)
+		return (free(buffer), NULL);
+	j = 0;
+	i = 0;
+	while (buffer[j] != '\0' && buffer[j] != '\n')
+		j++;
+	aux = ft_calloc (((ft_strlen(buffer) - j) + 1), 1);
+	if (!aux)
+		return (NULL);
+	j++;
+	while (buffer[j] != '\0')
+		aux[i++] = buffer[j++];
+	aux[i] = '\0';
+	free(buffer);
+	return (aux);
 }
 
 char	*get_next_line(int fd)
@@ -101,7 +105,7 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	line = get_the_line(buffer);
-	buffer = ft_clean(line, buffer);
+	buffer = ft_clean(buffer);
 	return (line);
 }
 
