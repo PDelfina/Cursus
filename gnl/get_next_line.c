@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/26 11:52:26 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/26 14:19:46 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_readfd(int fd, char *line)
 {
 	int		readline;
 	char	*buffer;
+	char	*auxiliar;
 
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
@@ -29,7 +30,8 @@ char	*ft_readfd(int fd, char *line)
 			free(line);
 			return (NULL);
 		}
-		line = ft_strjoin(line, buffer, readline);
+		auxiliar = line;
+		line = ft_strjoin(auxiliar, buffer, readline);
 		if (!line)
 			return (free(buffer), NULL);
 	}
@@ -40,30 +42,24 @@ char	*ft_readfd(int fd, char *line)
 char	*get_the_line(char *line)
 {
 	int		j;
+	int		i;
 	char	*dest;
 
 	j = 0;
 	if (!line)
 		return (NULL);
-	while (line[j] != '\n' && line[j])
+	while (line[j] != '\n' && line[j] != '\0')
 		j++;
 	j++;
-	dest = ft_calloc (j + 1, 1);
+	dest = ft_calloc (j + 1, sizeof(char));
 	if (!dest)
 		return (NULL);
-	dest[j] = '\0';
-	j = 0;
-	while (line[j] != '\n' && line[j] != '\0')
+	i = 0;
+	while (i < j)
 	{
-		dest[j] = line[j];
-		j++;
+		dest[i] = line[i];
+		i++;
 	}
-	if (line[j] == '\n')
-	{
-		dest[j] = '\n';
-		j++;
-	}
-	dest[j] = '\0';
 	return (dest);
 }
 
@@ -73,20 +69,23 @@ char	*ft_clean(char *buffer)
 	int		i;
 	char	*aux;
 
-	if (!buffer)
-		return (free(buffer), NULL);
 	j = 0;
-	i = 0;
 	while (buffer[j] != '\0' && buffer[j] != '\n')
 		j++;
-	aux = ft_calloc (((ft_strlen(buffer) - j) + 1), 1);
+	j++;
+	if (!buffer)
+		return (free(buffer), NULL);
+	i = j;
+	while (buffer[i] != '\0')
+		i++;
+	aux = ft_calloc (((i - j) + 1), sizeof(char));
 	if (!aux)
 		return (NULL);
-	j++;
+	i = 0;
 	while (buffer[j] != '\0')
 		aux[i++] = buffer[j++];
-	aux[i] = '\0';
 	free(buffer);
+	buffer = NULL;
 	return (aux);
 }
 
@@ -125,5 +124,6 @@ int	main(void)
 	printf ("%s", buffer);
 	free(buffer);
 }
+
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
 get_next_line.c get_next_line_utils.c*/
