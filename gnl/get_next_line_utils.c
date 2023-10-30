@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:50:56 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/26 13:42:14 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/30 10:49:13 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	while (i < n)
 	{
-		((unsigned char *)punt)[i] = '\0';
+		((unsigned char *)punt)[i] = 0;
 		i++;
 	}
 	return (punt);
@@ -81,7 +81,7 @@ char	*ft_strchr(char *s, int c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	if (c == '\0')
+	if (c == '\0' && s[i] == '\0')
 		return ((char *)&s[i]);
 	return (0);
 }

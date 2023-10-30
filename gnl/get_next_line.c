@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/27 13:46:11 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/30 10:53:21 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ char	*get_the_line(char *buffer)
 	while (buffer[j] != '\n' && buffer[j] != '\0')
 		j++;
 	j++;
-	line = malloc ((j + 1) * sizeof(char));
+	line = ft_calloc ((j + 1), sizeof(char));
+	if (!line)
+		return (NULL);
 	i = 0;
-	while (buffer[i] != '\0' && buffer[i] != '\n')
+	while (i < j)
 	{
 		line[i] = buffer[i];
 		i++;
@@ -69,7 +71,6 @@ char	*ft_clean(char *buffer)
 	j = 0;
 	while (buffer[j] != '\0' && buffer[j] != '\n')
 		j++;
-	j++;
 	if (!buffer)
 		return (free(buffer), NULL);
 	i = j;
@@ -77,13 +78,13 @@ char	*ft_clean(char *buffer)
 		i++;
 	if (i - j <= 0)
 		return (free(buffer), NULL);
-	aux = ft_calloc (((i - j) + 1), sizeof(char));
+	aux = ft_calloc (i - j, sizeof(char));
 	if (!aux)
 		return (NULL);
+	j++;
 	i = 0;
-	while (buffer[j] != '\0')
+	while (j < ft_strlen(buffer))
 		aux[i++] = buffer[j++];
-	aux[i] = '\0';
 	free(buffer);
 	buffer = NULL;
 	return (aux);
@@ -108,7 +109,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-void	leaks(void)
+/*void	leaks(void)
 {
 	system("leaks a.out");
 }
@@ -126,5 +127,5 @@ int	main(void)
 	free(buffer);
 }
 
-/*gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
 get_next_line.c get_next_line_utils.c*/
