@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/30 11:04:24 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/30 13:43:17 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ char	*ft_readfd(int fd, char *line)
 		if (readline == -1)
 		{
 			free(line);
+			line = NULL;
 			return (NULL);
 		}
 		auxiliar = line;
 		line = ft_strjoin(auxiliar, buffer, readline);
-		if (!line)
-			return (free(buffer), NULL);
 	}
 	free(buffer);
+	if (ft_strlen(line) == 0)
+		return (free(line), NULL);
 	return (line);
 }
 
@@ -48,18 +49,25 @@ char	*get_the_line(char *buffer)
 	j = 0;
 	while (buffer[j] != '\n' && buffer[j] != '\0')
 		j++;
-	j++;
-	line = ft_calloc ((j + 1), sizeof(char));
+	line = ft_calloc ((j + 1 + (buffer[j] == '\n')), sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (i < j)
+	while (buffer[i] != '\n' && buffer[i] != '\0')
 	{
 		line[i] = buffer[i];
 		i++;
 	}
+	if (buffer[i] == '\n')
+		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
+}
+
+char	*ft_free(char *buffer)
+{
+	free(buffer);
+	return (NULL);
 }
 
 char	*ft_clean(char *buffer)
@@ -71,20 +79,19 @@ char	*ft_clean(char *buffer)
 	j = 0;
 	while (buffer[j] != '\0' && buffer[j] != '\n')
 		j++;
-	i = j;
-	while (buffer[i] != '\0')
-		i++;
-	if (i - j <= 0)
-		return (free(buffer), NULL);
-	aux = ft_calloc (i - j, sizeof(char));
+	if (ft_strlen(buffer) - j <= 0)
+	{
+		buffer = ft_free(buffer);
+		return (NULL);
+	}
+	aux = ft_calloc (ft_strlen(buffer) - j + 1, sizeof(char));
 	if (!aux)
 		return (NULL);
 	j++;
 	i = 0;
-	while (j < ft_strlen(buffer))
+	while (buffer[j] != '\0')
 		aux[i++] = buffer[j++];
-	free(buffer);
-	buffer = NULL;
+	buffer = ft_free(buffer);
 	return (aux);
 }
 
@@ -95,8 +102,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
 	{
-		free(buffer);
-		buffer = NULL;
+		buffer = ft_free(buffer);
 		return (NULL);
 	}
 	buffer = ft_readfd(fd, buffer);
@@ -120,9 +126,11 @@ int	main(void)
 	atexit(leaks);
 	fd = open ("text.txt", O_RDWR);
 	buffer = get_next_line(fd);
+	free(buffer);
+	buffer = get_next_line(fd);
+	free(buffer);
 	buffer = get_next_line(fd);
 	printf("%s\n", buffer);
-	free(buffer);
 }
 
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 

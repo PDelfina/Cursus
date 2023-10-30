@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:50:56 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/30 11:05:33 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/30 13:42:49 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ char	*ft_strjoin(char *line, char *buffer, int readline)
 
 	if (!line)
 		line = ft_calloc(1, 1);
-	if (ft_strlen(buffer) == 0)
-		return (free(line), NULL);
-	ptr = malloc(ft_strlen(line) + ft_strlen(buffer) + 1);
+	ptr = malloc(ft_strlen(line) + readline + 1);
 	if (!ptr)
 		return (NULL);
 	i = 0;
