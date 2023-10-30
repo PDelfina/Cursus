@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:50:56 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/30 10:49:13 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/30 11:05:33 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
@@ -73,8 +71,6 @@ char	*ft_strchr(char *s, int c)
 	int		i;
 
 	i = 0;
-	if (!s)
-		return (0);
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)

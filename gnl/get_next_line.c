@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/30 10:53:21 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/30 11:04:24 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ char	*ft_clean(char *buffer)
 	j = 0;
 	while (buffer[j] != '\0' && buffer[j] != '\n')
 		j++;
-	if (!buffer)
-		return (free(buffer), NULL);
 	i = j;
 	while (buffer[i] != '\0')
 		i++;
