@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/30 16:31:23 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/30 16:34:35 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_readfd(int fd, char *line)
 {
@@ -97,19 +97,19 @@ char	*ft_clean(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[LIM];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
 	{
-		buffer = ft_free(buffer);
+		buffer[fd] = ft_free(buffer[fd]);
 		return (NULL);
 	}
-	buffer = ft_readfd(fd, buffer);
-	if (!buffer)
+	buffer[fd] = ft_readfd(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	line = get_the_line(buffer);
-	buffer = ft_clean(buffer);
+	line = get_the_line(buffer[fd]);
+	buffer[fd] = ft_clean(buffer[fd]);
 	return (line);
 }
 
@@ -120,18 +120,49 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	char	*buffer;
-	int		fd;
+	char	*buffer[LIM];
+	int		fd1;
+	int		fd2;
+	int		fd3;
+	int		fd4;
+	int		i;
 
 	atexit(leaks);
-	fd = open ("text.txt", O_RDWR);
-	buffer = get_next_line(fd);
-	free(buffer);
-	buffer = get_next_line(fd);
-	free(buffer);
-	buffer = get_next_line(fd);
-	printf("%s\n", buffer);
-}
-
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
-get_next_line.c get_next_line_utils.c*/
+	i = 0;
+	while (i < 1)
+	{
+		fd1 = open ("holi.txt", O_RDWR);
+		buffer = get_next_line(fd1);
+		printf("%s\n", buffer);
+		i++;
+		free(buffer);
+	}
+	i = 0;
+	while (i < 1)
+	{
+		fd2 = open ("como.txt", O_RDWR);
+		buffer = get_next_line(fd2);
+		printf("%s\n", buffer);
+		i++;
+		free(buffer);
+	}
+	i = 0;
+	while (i < 1)
+	{
+		fd3 = open ("dude.txt", O_RDWR);
+		buffer = get_next_line(fd3);
+		printf("%s\n", buffer);
+		i++;
+		free(buffer);
+	}
+	i = 0;
+	while (i < 1)
+	{
+		fd4 = open ("chu.txt", O_RDWR);
+		buffer = get_next_line(fd4);
+		printf("%s\n", buffer);
+		i++;
+		free(buffer);
+	}
+	return (0);
+}*/
