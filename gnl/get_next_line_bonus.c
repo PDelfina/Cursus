@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/31 11:58:15 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/31 12:36:32 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_readfd(int fd, char *buffer)
 	return (buffer);
 }
 
-char	*get_the_line(char *buffer)
+char	*ft_get_the_line(char *buffer)
 {
 	int		j;
 	int		i;
@@ -64,12 +64,6 @@ char	*get_the_line(char *buffer)
 	return (line);
 }
 
-char	*ft_free(char *buffer)
-{
-	free(buffer);
-	return (NULL);
-}
-
 char	*ft_clean(char *buffer)
 {
 	int		j;
@@ -81,7 +75,8 @@ char	*ft_clean(char *buffer)
 		j++;
 	if (ft_strlen(buffer) - j <= 0)
 	{
-		buffer = ft_free(buffer);
+		free(buffer);
+		buffer = NULL;
 		return (NULL);
 	}
 	aux = ft_calloc (ft_strlen(buffer) - j + 1, sizeof(char));
@@ -91,7 +86,8 @@ char	*ft_clean(char *buffer)
 	i = 0;
 	while (buffer[j] != '\0')
 		aux[i++] = buffer[j++];
-	buffer = ft_free(buffer);
+	free(buffer);
+	buffer = NULL;
 	return (aux);
 }
 
@@ -102,16 +98,18 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
 	{
-		buffer[fd] = ft_free(buffer[fd]);
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
 	}
 	buffer[fd] = ft_readfd(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
-	line = get_the_line(buffer[fd]);
+	line = ft_get_the_line(buffer[fd]);
 	buffer[fd] = ft_clean(buffer[fd]);
 	return (line);
 }
+
 
 /*void	leaks(void)
 {
