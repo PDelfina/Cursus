@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/30 16:34:35 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:58:15 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*ft_clean(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[LIM];
+	static char	*buffer[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
@@ -119,50 +119,15 @@ char	*get_next_line(int fd)
 }
 
 int	main(void)
-{
-	char	*buffer[LIM];
+{	
+	char	*buffer;
 	int		fd1;
 	int		fd2;
-	int		fd3;
-	int		fd4;
-	int		i;
 
-	atexit(leaks);
-	i = 0;
-	while (i < 1)
-	{
-		fd1 = open ("holi.txt", O_RDWR);
-		buffer = get_next_line(fd1);
-		printf("%s\n", buffer);
-		i++;
-		free(buffer);
-	}
-	i = 0;
-	while (i < 1)
-	{
-		fd2 = open ("como.txt", O_RDWR);
-		buffer = get_next_line(fd2);
-		printf("%s\n", buffer);
-		i++;
-		free(buffer);
-	}
-	i = 0;
-	while (i < 1)
-	{
-		fd3 = open ("dude.txt", O_RDWR);
-		buffer = get_next_line(fd3);
-		printf("%s\n", buffer);
-		i++;
-		free(buffer);
-	}
-	i = 0;
-	while (i < 1)
-	{
-		fd4 = open ("chu.txt", O_RDWR);
-		buffer = get_next_line(fd4);
-		printf("%s\n", buffer);
-		i++;
-		free(buffer);
-	}
-	return (0);
+	fd1 = open("text.txt", O_RDWR);
+	fd2 = open("holi.txt", O_RDWR);
+	buffer = get_next_line(fd1);
+	printf("fd1 %s\n", buffer);
+	buffer = get_next_line(fd2);
+	printf("fd2 %s\n", buffer);
 }*/

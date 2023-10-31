@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/30 16:31:23 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/31 10:33:55 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_readfd(int fd, char *line)
 	return (line);
 }
 
-char	*get_the_line(char *buffer)
+char	*ft_get_the_line(char *buffer)
 {
 	int		j;
 	int		i;
@@ -108,7 +108,7 @@ char	*get_next_line(int fd)
 	buffer = ft_readfd(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	line = get_the_line(buffer);
+	line = ft_get_the_line(buffer);
 	buffer = ft_clean(buffer);
 	return (line);
 }
