@@ -12,32 +12,32 @@
 
 #include "get_next_line.h"
 
-char	*ft_readfd(int fd, char *line)
+char	*ft_readfd(int fd, char *buffer)
 {
 	int		readline;
-	char	*buffer;
+	char	*line;
 	char	*auxiliar;
 
-	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (!buffer)
+	line = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!line)
 		return (NULL);
 	readline = 1;
-	while (!ft_strchr(buffer, '\n') && readline > 0)
+	while (!ft_strchr(line, '\n') && readline > 0)
 	{
-		readline = read(fd, buffer, BUFFER_SIZE);
+		readline = read(fd, line, BUFFER_SIZE);
 		if (readline == -1)
 		{
 			free(line);
-			line = NULL;
+			buffer = NULL;
 			return (NULL);
 		}
-		auxiliar = line;
-		line = ft_strjoin(auxiliar, buffer, readline);
+		auxiliar = buffer;
+		buffer = ft_strjoin(auxiliar, line, readline);
 	}
-	free(buffer);
-	if (ft_strlen(line) == 0)
-		return (free(line), NULL);
-	return (line);
+	free(line);
+	if (ft_strlen(buffer) == 0)
+		return (free(buffer), NULL);
+	return (buffer);
 }
 
 char	*ft_get_the_line(char *buffer)
