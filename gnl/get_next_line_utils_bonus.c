@@ -31,26 +31,26 @@ void	*ft_calloc(size_t count, size_t size)
 	return (punt);
 }
 
-char	*ft_strjoin(char *line, char *buffer, int readline)
+char	*ft_strjoin(char *buffer, char *line, int readline)
 {
 	char	*ptr;
 	int		i;
 	int		j;
 
-	if (!line)
-		line = ft_calloc(1, 1);
-	ptr = malloc(ft_strlen(line) + readline + 1);
+	if (!buffer)
+		buffer = ft_calloc(1, 1);
+	ptr = malloc(ft_strlen(buffer) + readline + 1);
 	if (!ptr)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (line[j])
-		ptr[i++] = line[j++];
+	while (buffer[j])
+		ptr[i++] = buffer[j++];
 	j = 0;
 	while (j < readline)
-		ptr[i++] = buffer[j++];
+		ptr[i++] = line[j++];
 	ptr[i] = '\0';
-	free(line);
+	free(buffer);
 	return (ptr);
 }
 
