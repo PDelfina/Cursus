@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/31 12:36:32 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:04:38 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_readfd(int fd, char *buffer)
 	return (buffer);
 }
 
-char	*ft_get_the_line(char *buffer)
+char	*get_the_line(char *buffer)
 {
 	int		j;
 	int		i;
@@ -64,6 +64,12 @@ char	*ft_get_the_line(char *buffer)
 	return (line);
 }
 
+char	*ft_free(char *buffer)
+{
+	free(buffer);
+	return (NULL);
+}
+
 char	*ft_clean(char *buffer)
 {
 	int		j;
@@ -75,8 +81,7 @@ char	*ft_clean(char *buffer)
 		j++;
 	if (ft_strlen(buffer) - j <= 0)
 	{
-		free(buffer);
-		buffer = NULL;
+		buffer = ft_free(buffer);
 		return (NULL);
 	}
 	aux = ft_calloc (ft_strlen(buffer) - j + 1, sizeof(char));
@@ -86,8 +91,7 @@ char	*ft_clean(char *buffer)
 	i = 0;
 	while (buffer[j] != '\0')
 		aux[i++] = buffer[j++];
-	free(buffer);
-	buffer = NULL;
+	buffer = ft_free(buffer);
 	return (aux);
 }
 
@@ -98,18 +102,16 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
 	{
-		free(buffer[fd]);
-		buffer[fd] = NULL;
+		buffer[fd] = ft_free(buffer[fd]);
 		return (NULL);
 	}
 	buffer[fd] = ft_readfd(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
-	line = ft_get_the_line(buffer[fd]);
+	line = get_the_line(buffer[fd]);
 	buffer[fd] = ft_clean(buffer[fd]);
 	return (line);
 }
-
 
 /*void	leaks(void)
 {
@@ -121,11 +123,24 @@ int	main(void)
 	char	*buffer;
 	int		fd1;
 	int		fd2;
+	int		fd3;
 
 	fd1 = open("text.txt", O_RDWR);
 	fd2 = open("holi.txt", O_RDWR);
+	fd3 = open("chu.txt", O_RDWR);
+	buffer = get_next_line(fd1);
+	buffer = get_next_line(fd2);
+	buffer = get_next_line(fd3);
+	buffer = get_next_line(fd1);
+	buffer = get_next_line(fd2);
+	buffer = get_next_line(fd3);
+	buffer = get_next_line(fd1);
+	buffer = get_next_line(fd2);
+	buffer = get_next_line(fd3);
 	buffer = get_next_line(fd1);
 	printf("fd1 %s\n", buffer);
 	buffer = get_next_line(fd2);
 	printf("fd2 %s\n", buffer);
+	buffer = get_next_line(fd3);
+	printf("fd3 %s\n", buffer);
 }*/

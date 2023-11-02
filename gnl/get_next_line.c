@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:47:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/31 12:32:45 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/31 16:09:37 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_readfd(int fd, char *buffer)
 		readline = read(fd, line, BUFFER_SIZE);
 		if (readline == -1)
 		{
-			free(buffer);
+			free(line);
 			buffer = NULL;
 			return (NULL);
 		}
@@ -64,6 +64,12 @@ char	*ft_get_the_line(char *buffer)
 	return (line);
 }
 
+char	*ft_free(char *buffer)
+{
+	free(buffer);
+	return (NULL);
+}
+
 char	*ft_clean(char *buffer)
 {
 	int		j;
@@ -75,8 +81,7 @@ char	*ft_clean(char *buffer)
 		j++;
 	if (ft_strlen(buffer) - j <= 0)
 	{
-		free(buffer);
-		buffer = NULL;
+		buffer = ft_free(buffer);
 		return (NULL);
 	}
 	aux = ft_calloc (ft_strlen(buffer) - j + 1, sizeof(char));
@@ -86,8 +91,8 @@ char	*ft_clean(char *buffer)
 	i = 0;
 	while (buffer[j] != '\0')
 		aux[i++] = buffer[j++];
-	free(buffer);
-	buffer = NULL;
+	buffer = ft_free(buffer);:wq
+
 	return (aux);
 }
 
@@ -98,8 +103,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read (fd, 0, 0) < 0)
 	{
-		free(buffer);
-		buffer = NULL;
+		buffer = ft_free(buffer);
 		return (NULL);
 	}
 	buffer = ft_readfd(fd, buffer);
@@ -113,22 +117,18 @@ char	*get_next_line(int fd)
 /*void	leaks(void)
 {
 	system("leaks a.out");
-}
+}*/
 
 int	main(void)
 {
 	char	*buffer;
 	int		fd;
 
-	atexit(leaks);
 	fd = open ("text.txt", O_RDWR);
 	buffer = get_next_line(fd);
+	printf("%s", buffer);
 	free(buffer);
-	buffer = get_next_line(fd);
-	free(buffer);
-	buffer = get_next_line(fd);
-	printf("%s\n", buffer);
 }
 
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
+/*gcc -Wall -Wextra -Werror -D BUFFER_SIZE=10 
 get_next_line.c get_next_line_utils.c*/
