@@ -6,14 +6,14 @@
 #    By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 10:41:42 by dparada           #+#    #+#              #
-#    Updated: 2023/11/27 13:26:11 by dparada          ###   ########.fr        #
+#    Updated: 2023/11/28 12:35:39 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SOURCE = ft_printf.c ft_putchar.c
+SOURCE = ft_printf.c ft_putchar.c ft_hexa.c
 
 OBJECTS = $(SOURCE:.c=.o)
 

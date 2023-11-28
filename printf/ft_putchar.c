@@ -6,16 +6,15 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:38:46 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/27 16:29:06 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/28 16:23:17 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(int c)
 {
-	write(1, &c, 1);/*
-	printf("char");*/
+	write(1, &c, 1);
 	return (1);
 }
 
@@ -24,7 +23,6 @@ int	ft_putstr(char *s)
 	int	i;
 
 	i = 0;
-	printf("string");
 	if (!s)
 	{
 		write (1, "(null)", 6);
@@ -38,9 +36,8 @@ int	ft_putstr(char *s)
 
 int	ft_digit(long ln)
 {
-	int		i;
+	int	i;
 
-	/*printf("holu");*/
 	i = 1;
 	if (ln < 0)
 	{
@@ -49,32 +46,26 @@ int	ft_digit(long ln)
 	}
 	while (ln > 9)
 	{
-		ln = (ln / 10);
 		i++;
+		ln /= 10;
 	}
 	return (i);
 }
 
 int	ft_putnbr(int n)
 {
-	int	i;
-	int	in;
-	char	*s;
+	int		i;
 	long	ln;
 
 	ln = (long)n;
 	i = ft_digit(ln);
-	in = i--;
-	if (n < 0)
+	if (ln < 0)
 	{
 		ft_putchar('-');
-		n *= -1;
+		ft_putnbr(-ln);
 	}
-	else if (n > 9)
-	{
-		s[in--] = ft_putnbr(n / 10);
-		ft_putchar(s[i]);
-	}
-	ft_putchar(n % 10 + '0');
+	else if (ln > 9)
+		ft_putnbr(ln / 10);
+	ft_putchar((ln % 10) + '0');
 	return (i);
 }
