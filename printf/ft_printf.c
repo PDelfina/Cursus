@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:43:28 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 15:47:56 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:50:57 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_check(char const *str, va_list parametros, int total)
 		free(ptr);
 	}
 	else if (str[i] == 'X' || str[i] == 'x')
-		 total += ft_hexa(va_arg(parametros, int), word);
+		 total += ft_hexa(va_arg(parametros, unsigned int), word);
 	return (total);
 }
 

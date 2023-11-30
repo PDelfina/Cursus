@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:01:36 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 15:48:56 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:51:35 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		ft_digit(long n);
 int		ft_strlen(char const *s);
 char	*ft_convert(long n, char *ptr, size_t i);
 char	*ft_itoa(int n);
-int		ft_hexa(int nb, char word);
+int		ft_hexa(unsigned long nb, char word);
 char	*ft_new(char *ptr);
-char	*ft_convert_he(int nb, char *base);
+char	*ft_convert_he(unsigned long nb, char *base);
 
 #endif

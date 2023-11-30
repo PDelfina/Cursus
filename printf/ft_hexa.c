@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:01:06 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 15:48:44 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:51:16 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_new(char *ptr)
 	return (s);
 }
 
-char	*ft_convert_he(int nb, char *base)
+char	*ft_convert_he(unsigned long nb, char *base)
 {
 	int		i;
 	int		resto;
@@ -62,7 +62,7 @@ char	*ft_convert_he(int nb, char *base)
 	return (s);
 }
 
-int	ft_hexa(int nb, char word)
+int	ft_hexa(unsigned long nb, char word)
 {
 	char	*low;
 	char	*upper;
