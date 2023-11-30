@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:43:28 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 15:23:30 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:47:56 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ int	ft_printf(char const *str, ...)
 
 /*int	main(void)
 {
-	ft_printf(" %x ", 0);
+	ft_printf(" %x ", -1);
 }*/

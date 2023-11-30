@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:01:06 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 15:27:17 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:48:44 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ char	*ft_convert_he(int nb, char *base)
 
 	i = 0;
 	ptr = malloc(1);
-	if (nb > 16)
+	if (nb < 16 && nb >= 0)
+		ptr[i++] = base[nb];
+	else
 	{
-		while (nb > 0)
+		while (nb != 0)
 		{
 			resto = nb % 16;
 			ptr[i] = base[resto];
@@ -54,8 +56,6 @@ char	*ft_convert_he(int nb, char *base)
 			i++;
 		}
 	}
-	else 
-		ptr[i] = base[nb];
 	ptr[i] = '\0';
 	s = ft_new(ptr);
 	free(ptr);

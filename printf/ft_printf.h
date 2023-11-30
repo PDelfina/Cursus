@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:01:36 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 15:23:46 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:48:56 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ char	*ft_itoa(int n);
 int		ft_hexa(int nb, char word);
 char	*ft_new(char *ptr);
 char	*ft_convert_he(int nb, char *base);
+
 #endif
