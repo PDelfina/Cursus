@@ -6,42 +6,78 @@
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:01:06 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/29 16:42:47 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:27:17 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_converthe(int nb, char *base)
+char	*ft_new(char *ptr)
 {
-	int	i;
+	int 	i;
+	int		n;
+	int		len;
+	char	*s;
 
 	i = 0;
-	while (nb > 0)
+	len = ft_strlen(ptr);
+	s = malloc (len + 1);
+	if (!s)
+		return (NULL);
+	n = len - 1;
+	while (len > i)
 	{
-		if (nb < 17)
-			ft_putchar(base[nb]);
-		else if (nb > 16)
+		s[i] = ptr[n];
+		i++;
+		n--;
+	}
+	s[i] = '\0';	
+	return (s);
+}
+
+char	*ft_convert_he(int nb, char *base)
+{
+	int		i;
+	int		resto;
+	char	*ptr;
+	char	*s;
+
+	i = 0;
+	ptr = malloc(1);
+	if (nb > 16)
+	{
+		while (nb > 0)
 		{
-			i += ft_converthe(nb / 16, base);
-			i += ft_converthe(nb % 16, base);
+			resto = nb % 16;
+			ptr[i] = base[resto];
+			nb /= 16;
+			i++;
 		}
 	}
-	return (i);
+	else 
+		ptr[i] = base[nb];
+	ptr[i] = '\0';
+	s = ft_new(ptr);
+	free(ptr);
+	return (s);
 }
 
 int	ft_hexa(int nb, char word)
 {
 	char	*low;
 	char	*upper;
-	int		total;
+	char	*total;
+	int		i;
 
-	total = 0;
 	upper = "0123456789ABCDEF";
 	low = "0123456789abcdef";
+	if (nb < 0)
+		nb *= -1;
 	if (word == 'x')
-		total += ft_converthe(nb, low);
-	else if (word == 'X')
-		total += ft_converthe(nb, upper);
-	return (total);
+		total = ft_convert_he(nb, low);
+	else
+		total = ft_convert_he(nb, upper);
+	i = ft_putstr(total);
+	free(total);
+	return (i);
 }

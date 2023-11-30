@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:43:28 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 12:30:16 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 15:23:30 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	ft_check(char const *str, va_list parametros, int total)
 {
 	int		i;
-	char	word;/*
-	char	*ptr;-*/
+	char	word;
+	char	*ptr;
 
 	i = 0;
 	word = str[i];
@@ -26,6 +26,14 @@ int	ft_check(char const *str, va_list parametros, int total)
 		total += ft_putchar(va_arg(parametros, int));
 	else if (str[i] == 's')
 		total += ft_putstr(va_arg(parametros, char *));
+	else if (str[i] == 'd' || str[i] == 'i')
+	{
+		ptr = ft_itoa(va_arg(parametros, int));
+		total += ft_putstr(ptr);
+		free(ptr);
+	}
+	else if (str[i] == 'X' || str[i] == 'x')
+		 total += ft_hexa(va_arg(parametros, int), word);
 	return (total);
 }
 
@@ -55,5 +63,5 @@ int	ft_printf(char const *str, ...)
 
 /*int	main(void)
 {
-	ft_printf(" %%");
+	ft_printf(" %x ", 0);
 }*/
