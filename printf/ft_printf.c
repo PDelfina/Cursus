@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:43:28 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 15:50:57 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 16:18:31 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	ft_check(char const *str, va_list parametros, int total)
 		free(ptr);
 	}
 	else if (str[i] == 'X' || str[i] == 'x')
-		 total += ft_hexa(va_arg(parametros, unsigned int), word);
+		total += ft_hexa(va_arg(parametros, unsigned int), word);
+	else if (str[i] == 'p')
+		total += ft_hexa(va_arg(parametros, unsigned int), word);
 	return (total);
 }
 
 int	ft_printf(char const *str, ...)
 {
-	int 	i;
+	int		i;
 	int		cont;
 	va_list	parametros;
 
@@ -63,5 +65,9 @@ int	ft_printf(char const *str, ...)
 
 /*int	main(void)
 {
-	ft_printf(" %x ", -1);
+	char	*line; 
+
+	line = "13434";
+	printf("org: %p\n", line);
+	ft_printf("mio: %p\n", line);
 }*/
