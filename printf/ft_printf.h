@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:01:36 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/28 13:28:15 by dparada          ###   ########.fr       */
+/*   Updated: 2023/11/30 12:30:29 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-int		ft_printf(const char *str, ...);
-int		ft_check(const char *str, va_list parametros);
-int		ft_putchar(int c);
+int		ft_printf(char const *str, ...);
+int		ft_check(char const *str, va_list parametros, int total);
+int		ft_putchar(char c);
 int		ft_putstr(char *s);
-int		ft_putnbr(int n);
-int		ft_hexamayus(int nb);
-size_t	digit(long ln);
+int		ft_hexa(int nb, char word);
+int		ft_converthe(int nb, char *base);
+int		ft_digit(long n);
+int		ft_strlen(char const *s);
+char	*ft_convert(long n, char *ptr, size_t i);
+char	*ft_itoa(int n);
 #endif

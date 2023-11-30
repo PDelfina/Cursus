@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:38:46 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 11:10:40 by dparada          ###   ########.fr       */
+/*   Created: 2023/11/30 11:14:37 by dparada           #+#    #+#             */
+/*   Updated: 2023/11/30 11:57:37 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *str)
+int	ft_strlen(char const *s)
 {
 	int	i;
 
 	i = 0;
-	if (!str)
-	{
-		write (1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		ft_putchar(str[i]);
+	while (s[i])
 		i++;
-	}
 	return (i);
 }
