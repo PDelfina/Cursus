@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:43:28 by dparada           #+#    #+#             */
-/*   Updated: 2023/12/01 12:51:42 by dparada          ###   ########.fr       */
+/*   Updated: 2023/12/04 14:54:11 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_check_hexa(char const *str, va_list parametros)
 	if (str[i] == 'x' || str[i] == 'X')
 		total += ft_hexa(va_arg(parametros, unsigned int), word);
 	else if (str[i] == 'p')
-		total += ft_hexa(va_arg(parametros, unsigned int), word);
+		total += ft_punt(va_arg(parametros, void *));
 	else if (str[i] == 'u')
 	{
 		ptr = ft_itoa_u(va_arg(parametros, unsigned int));
@@ -83,11 +83,16 @@ int	ft_printf(char const *str, ...)
 	return (cont);
 }
 
+/*void	leaks(void)
+{
+	system("leaks a.out");
+}
 int	main(void)
 {
 	char	*line; 
 
-	line = "13434";
+	line = "123";
+	atexit(leaks);
 	printf("org: %p\n", line);
 	ft_printf("mio: %p\n", line);
-}
+}*/

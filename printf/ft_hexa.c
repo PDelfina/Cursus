@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hexa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
+/*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:01:06 by dparada           #+#    #+#             */
-/*   Updated: 2023/11/30 16:17:06 by dparada          ###   ########.fr       */
+/*   Updated: 2023/12/04 14:53:06 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,36 @@ char	*ft_new(char *ptr)
 		n--;
 	}
 	s[i] = '\0';
+	free(ptr);
 	return (s);
 }
 
 char	*ft_convert_he(unsigned long nb, char *base)
 {
-	int		i;
-	int		resto;
-	char	*ptr;
-	char	*s;
+	int				i;
+	int				resto;
+	unsigned long	nn;
+	char			*ptr;
+	char			*s;
 
 	i = 0;
-	ptr = malloc(1);
-	if (nb < 16 && nb >= 0)
-		ptr[i++] = base[nb];
+	nn = nb;
+	i = ft_strdiv(nb);
+	ptr = malloc (i + 1);
+	i = 0;
+	if (nn < 16 && nn >= 0)
+		ptr[i++] = base[nn];
 	else
 	{
-		while (nb != 0)
+		while (nn != 0)
 		{
-			resto = nb % 16;
-			ptr[i] = base[resto];
-			nb /= 16;
-			i++;
+			resto = nn % 16;
+			ptr[i++] = base[resto];
+			nn /= 16;
 		}
 	}
 	ptr[i] = '\0';
 	s = ft_new(ptr);
-	free(ptr);
 	return (s);
 }
 
@@ -73,20 +76,11 @@ int	ft_hexa(unsigned long nb, char word)
 	low = "0123456789abcdef";
 	if (nb < 0)
 		nb *= -1;
-	if (word == 'x' || word == 'X')
-	{
-		if (word == 'x')
-			total = ft_convert_he(nb, low);
-		else
-			total = ft_convert_he(nb, upper);
-		i = ft_putstr(total);
-	}
-	else
-	{
-		write(1, "0x", 2);
+	if (word == 'x')
 		total = ft_convert_he(nb, low);
-		i = ft_putstr(total) + 2;
-	}
+	else
+		total = ft_convert_he(nb, upper);
+	i = ft_putstr(total);
 	free(total);
 	return (i);
 }

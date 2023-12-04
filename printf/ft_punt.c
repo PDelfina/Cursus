@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_punt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 11:14:37 by dparada           #+#    #+#             */
-/*   Updated: 2023/12/04 15:12:55 by dparada          ###   ########.fr       */
+/*   Created: 2023/12/04 11:32:05 by dparada           #+#    #+#             */
+/*   Updated: 2023/12/04 14:28:07 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(char const *s)
+int	ft_punt(void *nb)
 {
-	int	i;
+	int		i;
+	char	word;
 
 	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int	ft_strdiv(unsigned long nb)
-{
-	int	i;
-
-	i = 0;
-	if (nb < 16 && nb >= 0)
-		i = 1;
+	word = 'x';
+	if (!nb)
+	{
+		ft_putstr("0x0");
+		return (3);
+	}
 	else
 	{
-		while (nb != 0)
-		{
-			nb /= 16;
-			i++;
-		}
+		write(1, "0x", 2);
+		i = ft_hexa(((unsigned long)nb), word) + 2;
 	}
 	return (i);
 }
