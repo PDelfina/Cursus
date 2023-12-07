@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
+/*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 16:39:53 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/11 10:29:50 by dparada          ###   ########.fr       */
+/*   Created: 2023/11/30 11:14:37 by dparada           #+#    #+#             */
+/*   Updated: 2023/12/07 14:41:38 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_strdiv(unsigned long nb)
 {
-	t_list	*aux;
+	int	i;
 
-	if (*lst == NULL)
-		*lst = new;
+	i = 0;
+	if (nb < 16 && nb >= 0)
+		i = 1;
 	else
 	{
-		aux = ft_lstlast(*lst);
-		aux->next = new;
+		while (nb != 0)
+		{
+			nb /= 16;
+			i++;
+		}
 	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:39:13 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/29 11:21:53 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:38:21 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
-/*int	main(void)
-{
-	char const	*str1 = "Hola ";
-	char const	*str2 = "buen dia";
-	
-	printf("%s\n", ft_strjoin(str1, str2));
-}*/

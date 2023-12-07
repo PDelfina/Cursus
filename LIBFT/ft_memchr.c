@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 11:21:26 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/09 13:57:36 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:34:21 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (0);
 }
-
-/*int	main(void)
-{
-	char	*s = "Hola mundo";
-	char *pos = memchr(s, 'a', 10);
-	char *posi = ft_memchr(s, 'a', 10);
-
-	printf("%s\n", pos);
-	printf("%s\n", "a");
-	printf("%s\n", posi);
-	return (0);
-}*/

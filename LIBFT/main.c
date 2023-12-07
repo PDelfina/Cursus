@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 16:39:53 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/11 10:29:50 by dparada          ###   ########.fr       */
+/*   Created: 2023/12/07 15:41:38 by dparada           #+#    #+#             */
+/*   Updated: 2023/12/07 15:45:56 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	main(void)
 {
-	t_list	*aux;
+	char	*s;
+	int		fd;
 
-	if (*lst == NULL)
-		*lst = new;
-	else
-	{
-		aux = ft_lstlast(*lst);
-		aux->next = new;
-	}
+	fd = open("text.txt", O_RDWR);
+	s = get_next_line(fd); 
+	ft_printf("%s", s);
 }

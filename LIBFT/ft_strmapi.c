@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:46:17 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/10 15:25:54 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:40:23 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	ptr[i] = '\0';
 	return (ptr);
 }
-
-/*char	iter(unsigned int i, char s)
-{
-	(void)i;
-	return (ft_toupper(s));
-}
-
-int	main(void)
-{
-	char	*str = ft_strmapi("abvc", iter);
-	printf("%s\n", str);
-}*/

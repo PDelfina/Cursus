@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_p.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 10:48:51 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/11 10:29:22 by dparada          ###   ########.fr       */
+/*   Created: 2023/11/29 13:21:05 by dparada           #+#    #+#             */
+/*   Updated: 2023/12/07 14:43:02 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_digit(long n)
+int	ft_digit_p(long n)
 {
 	int	i;
 
@@ -30,37 +30,36 @@ int	ft_digit(long n)
 	return (i);
 }
 
-char	*ft_convert(long n, char *ptr, size_t i)
+char	*ft_convert_p(long n, char *ptr, size_t i)
 {
+	ptr[0] = '0';
 	if (n < 0)
 	{
 		ptr[0] = '-';
 		n *= -1;
 	}
-	if (n == 0)
-		ptr[0] = '0';
-	while (n > 9)
+	while (n > 0)
 	{
 		ptr[--i] = (n % 10) + '0';
 		n /= 10;
 	}
-	if (n > 0)
-		ptr[--i] = n + '0';
 	return (ptr);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoap(int n)
 {
 	char	*ptr;
 	size_t	i;
+	size_t	j;
 	long	nl;
 
 	nl = (long)n;
-	i = ft_digit(nl);
+	i = ft_digit_p(nl);
+	j = i;
 	ptr = malloc ((i + 1) * sizeof(char));
 	if (!ptr)
-		return (NULL);
+		return (0);
 	ptr[i] = '\0';
-	ptr = ft_convert(nl, ptr, i);
+	ptr = ft_convert_p(nl, ptr, i);
 	return (ptr);
 }

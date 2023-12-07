@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 12:55:11 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/27 13:01:28 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:36:28 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,3 @@ void	ft_putstr_fd(char *s, int fd)
 		i++;
 	}
 }
-
-/*int	main(void)
-{
-	ft_putstr_fd("array", 1);
-	return (0);
-}*/

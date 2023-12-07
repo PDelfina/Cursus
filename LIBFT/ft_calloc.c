@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:06:28 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/09 12:03:48 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:27:20 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,3 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(punt, (count * size));
 	return (punt);
 }
-
-/*int	main(void)
-{
-	printf("%s\n", ft_calloc(1, 1));
-	printf("%s\n", calloc(1, 1));
-}*/

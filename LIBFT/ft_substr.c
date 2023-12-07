@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 12:10:19 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/09 11:44:45 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:41:24 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr[n] = '\0';
 	return (ptr);
 }
-
-/*int	main(void)
-{
-	char const	*s = "dias buena";
-	unsigned int beg = 2;
-	size_t length = 7;
-
-	printf("%s\n", ft_substr(s, beg, length));
-	return (0);
-}*/

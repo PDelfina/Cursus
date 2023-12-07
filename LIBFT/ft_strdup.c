@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:52:06 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/10 14:31:42 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:37:35 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,3 @@ char	*ft_strdup(const char *s1)
 	punt[i] = '\0';
 	return (punt);
 }
-
-/*int	main(void)
-{
-	printf("%s&\n", ft_strdup("this is a normal test"));
-	printf("%s&\n", strdup("this is a normal test"));
-}*/

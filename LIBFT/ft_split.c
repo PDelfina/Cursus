@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:36:51 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/10 11:11:28 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:36:56 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (matrix);
 }
-
-/*int	main(void)
-{
-	char	*ptr = "hello!zzzzzzzz";
-	char	c = 'z';
-	int i = 0;
-	char	**matrix;
-
-	matrix = ft_split(ptr, c);
-	while (matrix[i])
-	{
-		printf("%s\n", matrix[i]);
-		i++;
-	}
-}*/

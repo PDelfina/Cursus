@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 11:56:50 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/21 15:03:18 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:42:48 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,3 @@ int	ft_tolower(int c)
 		c += 32;
 	return (c);
 }
-
-/*#include <ctype.h>
-
-int	main(void)
-{
-	int				f = 'A';
-
-	printf("%c\n", ft_tolower(f));
-	printf("%c\n", tolower(f));
-	return (0);
-}*/

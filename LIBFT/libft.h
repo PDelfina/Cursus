@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 14:17:19 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/06 15:16:49 by dparada          ###   ########.fr       */
+/*   Updated: 2023/12/07 15:23:04 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@
 # include <unistd.h>
 # include <ctype.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+# ifndef BUFFER_SIZE
+#	define BUFFER_SIZE 10
+# endif
 
 int		ft_atoi(const char *str);
 int		ft_isalpha(int c);
@@ -68,4 +74,31 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+char	*get_next_line(int fd);
+char	*ft_strjoin_gnl(char *buffer, char *line, int readline);
+char	*ft_strchr_gnl(char *s, int c);
+char	*ft_readfd(int fd, char *buffer);
+char	*ft_clean(char *buffer);
+char	*ft_get_the_line(char *line);
+void	*ft_calloc_gnl(size_t count, size_t size);
+int		ft_strlen_gnl(char *s);
+
+int		ft_printf(char const *str, ...);
+int		ft_check(char const *str, va_list parametros, int total);
+int		ft_check_hexa(char const *str, va_list parametros);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_hexa(unsigned long nb, char word);
+int		ft_digit_p(long n);
+int		ft_digit_u(long n);
+int		ft_punt(void *nb);
+int		ft_strdiv(unsigned long nb);
+char	*ft_convert_u(long n, char *ptr, size_t i);
+char	*ft_convert_p(long n, char *ptr, size_t i);
+char	*ft_itoap(int n);
+char	*ft_itoa_u(unsigned int n);
+char	*ft_convert_he(unsigned long nb, char *base);
+char	*ft_new(char *ptr);
+
 #endif

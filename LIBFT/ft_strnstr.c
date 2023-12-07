@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 13:26:22 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/27 13:02:04 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:40:50 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-
-/*int	main(void)
-{
-	const char	*big = "123456789";
-	const char	*little = "9";
-	size_t		x = 8;
-
-	printf("%s\n", ft_strnstr(big, little, x));
-	printf("%s\n", strnstr(big, little, x));
-}*/

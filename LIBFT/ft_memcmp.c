@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:30 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/09 15:48:19 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:34:47 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,3 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
-
-/*int	main(void)
-{
-	char	*s1 = "Hola Mundo";
-	char	*s2 = "Hola mundo";
-
-	printf("%d\n", ft_memcmp(s1, s2, 7));
-	printf("%d\n", memcmp(s1, s2, 7));
-}*/

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:56:13 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/09 11:08:58 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:26:13 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,3 @@ int	ft_atoi(const char *str)
 	t = 1;
 	return (ft_fatoi(i, n, t, str));
 }
-
-/*int	main(void)
-{
-	const char	*str;
-
-	str = "       -2025";
-	printf("%d\n", ft_atoi(str));
-	printf("%d\n", atoi(str));
-	return (0);
-}*/

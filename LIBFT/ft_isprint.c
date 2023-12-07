@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 10:22:36 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/21 15:01:59 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:34:03 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,3 @@ int	ft_isprint(int c)
 	else
 		return (0);
 }
-/*
-#include <ctype.h>
-
-int	main(void)
-{
-	int	x = '1';
-
-	printf("%d\n", ft_isprint(x));
-	printf("%d\n", isprint(x));
-	return (0);
-}*/

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 10:32:47 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/29 16:00:33 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:40:12 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
-/*int	main(void)
-{
-	const char *array = "dias buena";
-
-	printf("%zu\n", ft_strlen(array));
-	printf("%zu\n", strlen(array));
-	return (0);
-}*/

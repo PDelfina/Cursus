@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:18:47 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/27 14:42:28 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:36:10 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,3 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd((n + '0'), fd);
 	}
 }
-
-/*int	main(void)
-{
-	int	num = 56;
-
-	ft_putnbr_fd(num, 1);
-	return (0);
-}*/

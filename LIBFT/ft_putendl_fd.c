@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 13:03:58 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/27 13:17:42 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:35:59 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,3 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
-
-/*int	main(void)
-{
-	ft_putendl_fd("array", 1);
-	printf("a");
-	return (0);
-}*/

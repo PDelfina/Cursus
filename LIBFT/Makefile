@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 11:56:30 by dparada           #+#    #+#              #
-#    Updated: 2023/10/06 15:16:55 by dparada          ###   ########.fr        #
+#    Updated: 2023/12/07 13:57:50 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,15 +21,24 @@ SOURCE = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_substr.c\
 		ft_strmapi.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c\
 
- SOURCE_B = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
+SOURCE_B = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
 			ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
 			ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c\
+
+SOURCE_P = ft_printf.c ft_putchar.c ft_hexa.c ft_itoa_u.c ft_itoa_p.c\
+			ft_printf_utils.c ft_punt.c ft_putchar.c\
+
+SOURCE_G = get_next_line.c get_next_line_utils.c\
 
 OBJECTS = $(SOURCE:.c=.o)
 
 OBJECTS_B = $(SOURCE_B:.c=.o)
 
-all: $(NAME) bonus
+OBJECTS_P = $(SOURCE_P:.c=.o)
+
+OBJECTS_G = $(SOURCE_G:.c=.o)
+	
+all: $(NAME) bonus printf gnl
 
 $(NAME): $(OBJECTS) 
 	ar rcs $(NAME) $(OBJECTS)
@@ -40,12 +49,18 @@ $(NAME): $(OBJECTS)
 bonus: $(OBJECTS_B)
 		ar rcs $(NAME) $(OBJECTS_B)
 
+
+printf: $(OBJECTS_P)
+		ar rcs $(NAME) $(OBJECTS_P)
+
+gnl: $(OBJECTS_G)
+		ar rcs $(NAME) $(OBJECTS_G)
 clean:
-		rm -f $(OBJECTS) $(OBJECTS_B)
+		rm -f $(OBJECTS) $(OBJECTS_B) $(OBJECTS_P) $(OBJECTS_G)
 
 fclean: clean
-		rm -f $(NAME) bonus
+		rm -f $(NAME) bonus printf gnl
 		
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus printf gnl clean fclean re

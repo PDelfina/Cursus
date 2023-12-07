@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:38:01 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/09 11:29:17 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:27:03 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,3 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-
-/*int	main(void)
-{
-	char	array[20];
-	size_t	n = 5;
-
-	ft_bzero(array, n);
-	printf("%s\n", array);
-	printf("a\n");
-	printf("%s\n", bzero(array, n));
-	return (0);
-}*/

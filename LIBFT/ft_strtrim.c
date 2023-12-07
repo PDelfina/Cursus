@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 14:00:18 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/02 10:29:12 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:41:14 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ptr = ft_substr(s1, start, ((end - start) + 1));
 	return (ptr);
 }
-
-/*int	main(void)
-{
-	char const	*str1 = "  fthsrth   ";
-	char const	*str2 = " h ";
-
-	printf("%s\n", ft_strtrim(str1, str2));
-	return (0);
-}*/

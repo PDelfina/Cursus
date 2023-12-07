@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_u.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 10:48:51 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/11 10:29:22 by dparada          ###   ########.fr       */
+/*   Created: 2023/12/01 10:24:21 by dparada           #+#    #+#             */
+/*   Updated: 2023/12/07 14:43:19 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_digit(long n)
+int	ft_digit_u(long n)
 {
 	int	i;
 
 	i = 1;
-	if (n < 0)
-	{
-		i++;
-		n *= -1;
-	}
 	while (n > 9)
 	{
 		n = (n / 10);
@@ -30,37 +25,31 @@ int	ft_digit(long n)
 	return (i);
 }
 
-char	*ft_convert(long n, char *ptr, size_t i)
+char	*ft_convert_u(long n, char *ptr, size_t i)
 {
-	if (n < 0)
-	{
-		ptr[0] = '-';
-		n *= -1;
-	}
-	if (n == 0)
-		ptr[0] = '0';
-	while (n > 9)
+	ptr[0] = '0';
+	while (n != 0)
 	{
 		ptr[--i] = (n % 10) + '0';
 		n /= 10;
 	}
-	if (n > 0)
-		ptr[--i] = n + '0';
 	return (ptr);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa_u(unsigned int n)
 {
 	char	*ptr;
 	size_t	i;
+	size_t	j;
 	long	nl;
 
 	nl = (long)n;
-	i = ft_digit(nl);
-	ptr = malloc ((i + 1) * sizeof(char));
+	i = ft_digit_u(nl);
+	j = i;
+	ptr = malloc((i + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
 	ptr[i] = '\0';
-	ptr = ft_convert(nl, ptr, i);
+	ptr = ft_convert_u(nl, ptr, i);
 	return (ptr);
 }

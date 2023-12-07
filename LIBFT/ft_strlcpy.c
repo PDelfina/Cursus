@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 14:30:32 by dparada           #+#    #+#             */
-/*   Updated: 2023/09/29 11:28:38 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:39:20 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	return (n);
 }
-
-/*int	main(void)
-{
-	char	dest[0];
-	char	src[] = "Hola Mundo";
-
-	printf("%zu\n", ft_strlcpy(dest, src, 0));
-	printf("%s\n", dest);
-	printf("%zu\n", strlcpy(dest, src, 0));
-	return (0);
-}*/

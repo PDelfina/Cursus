@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 15:48:03 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/10 15:42:42 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:41:02 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,3 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)&s[i]);
 	return ((char *)l);
 }
-
-/*int	main(void)
-{
-	const char	*array = "tripouille";
-
-	printf("%s\n", ft_strrchr(array, 'a'));
-	printf("%s\n", strrchr(array, 'a'));
-	return (0);
-}*/

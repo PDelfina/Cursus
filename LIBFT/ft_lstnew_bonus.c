@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 15:39:18 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/03 16:09:46 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:33:02 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,3 @@ t_list	*ft_lstnew(void *content)
 	nodo->next = NULL;
 	return (nodo);
 }
-
-/*int	main(void)
-{
-	t_list	*lis = ft_lstnew((void *)42);
-
-	return (0);
-}*/

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:37:55 by dparada           #+#    #+#             */
-/*   Updated: 2023/10/05 16:10:58 by dparada          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:37:11 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)&s[i]);
 	return (0);
 }
-
-/*int	main(void)
-{
-	const char	*array = "Hola buenos dias";
-	int			x = 'f';
-	printf("%s\n", ft_strchr(array, x));
-	printf("%s\n", strchr(array, 't' + 256));
-	return (0);
-}*/
