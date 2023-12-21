@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2023/12/20 15:09:19 by dparada          ###   ########.fr        #
+#    Updated: 2023/12/21 13:06:29 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,15 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
+MAGENTA   = \033[35;1m
+YELLOW    = \033[33;1m
+GREEN     = \033[32;1m
+WHITE     = \033[37;1m
+RESET     = \033[0m
+GRAY 	  = \033[0;90m
+BLUE      = \033[34;1m
+CYAN      = \033[37;1m
+RED		  = \033[31;1m
 
 SRC_FILES = tutorial
 
@@ -39,13 +40,13 @@ OBJF = .cache_exists
 all: $(NAME)
 
 $(NAME):	$(OBJ)
-			@make -C $(LIBFT)
+			@make all -C $(LIBFT)
 			@make -C $(MLX42)
 			@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
-			@echo "fract_ol compiled!"
+			@echo "$(MAGENTA)Fract_ol compiled!$(RESET)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@echo "compiling $<"
+			@echo "$(BLUE)Compiling: $(RESET)$(addsuffix .c, $(SRC_FILES))"
 			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJF):
@@ -54,22 +55,23 @@ $(OBJF):
 clean:
 			@rm -frf $(OBJ_DIR)
 			@make clean -C $(MLX42)
-			@make clean -C $(LIBFT)
-			@echo "LIBFT objects removed!"
-			@echo "fract_ol object removed!"
+			@make all clean -C $(LIBFT)
+			@echo "$(RED)Cleaning libraries MLX and LIBFT.$(RESET)"
+			@echo "$(RED)Cleaning fract_ol executables.$(RESET)"
 
 fclean:
 			@rm -rf $(OBJ_DIR)
 			@rm -rf $(NAME)
 			@make fclean -C $(MLX42)
 			@make fclean -C $(LIBFT)
-			@echo "libft executable cleaned"
-			@echo "fract_ol executable cleaned"
+			@echo "$(RED)Fcleaning libraries MLX and LIBFT.$(RESET)"
+			@echo "$(RED)Fcleaning fract_ol.$(RESET)"
 
-re: 		fclean all
-			@echo "fract_ol recompiled""
+re: fclean all
+			@echo "$(YELLOW)Fract_ol recompiled$(RESET)"
 
 norm:
-			@norminette $(SRC) $(LIBFT)/src
-			
+			@norminette $(SRC) $(LIBFT)
+						
 .PHONY: all clean fclean re norm
+
