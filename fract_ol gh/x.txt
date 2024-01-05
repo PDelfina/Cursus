@@ -1,0 +1,35 @@
+
+	while (y < 793)
+	{
+		while (x < 10001)
+		{
+			mandelbrot(x, y, 55, mlx);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	color = 0xffffffFF;
+	if (num_iters < 5)
+		color = 0xef605fFF;//rosa/rojo
+	else if (num_iters < 10)
+		color = 0xFF9944FF;//naranja
+	else if (num_iters < 15)
+		color = 0xFFF500FF;//amarillo
+	else if (num_iters < 20)
+		color = 0x5fefa8FF;//verde agua
+	else if (num_iters < 25)
+		color = 0xa6ef5fFF;//verde
+	else if (num_iters < 30)
+		color = 0x5fa6efFF;//azul
+	else if (num_iters < 35)
+		color = 0xa85fefFF;//violeta
+	else if (num_iters < 40)
+		color = 0x8219e8FF;//violeta oscuro
+	else if (num_iters < 45)
+		color = 0xFF00FFFF;//fuxia
+	else
+		color = 0xef5fa6FF;//rosa claro
+	0x2f2f2fFF //negro
+	0xFFFFFFFF //blanco
+		return (color);
