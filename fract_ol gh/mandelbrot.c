@@ -6,51 +6,39 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/05 11:47:12 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/09 16:06:11 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int32_t	color(int iters)
+void	mandelbrot_init(t_fractol	*info)
 {
-	int32_t color;
-
-	if (iters < 10)
-		color = 0x8219e8FF;//violeta oscuro
-	else if (iters < 30)
-		color = 0xFF9944FF;//naranja
-	else if (iters < 50)
-		color = 0xFFF500FF;//amarillo
-	else if (iters < 70)
-		color = 0x5fefa8FF;//verde agua
-	else if (iters < 90)
-		color = 0xa6ef5fFF;//verde
-	else if (iters < 110)
-		color = 0xef605fFF;//rojo
-	else if (iters < 130)
-		color = 0xa85fefFF;//violeta
-	else if (iters < 150)
-		color = 0x5fa6efFF;//azul
-	else if (iters < 170)
-		color = 0xFF00FFFF;//fuxia
-	else
-		color = 0x2f2f2fFF;//negro
-	return (color);
+	info->mlx = mlx_init(WIDTH, HEIGHT, "42 fract-ol", false);
+	if (!info->mlx)
+		exit(EXIT_FAILURE);
+	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
+	if (!info->img)
+		exit(EXIT_FAILURE);
+	info->max_iter = 200;
+	info->min_real = -2.0;
+	info->max_real = 1.0;
+	info->min_imag = -1.0;
+	info->max_imag = 1.0;
 }
 
-void	calcular_mandelbrot(t_fractol *fractal, t_real *c, int x, int y)
+void	calcular_mandelbrot(t_fractol *info, t_real *c, int x, int y)
 {
 	double	range_r;
 	double	range_i;
 
-	range_r = fractal->max_real - fractal->min_real;
-	range_i = fractal->max_imag - fractal->min_imag;
-	c->real = x * (range_r / WIDTH) + fractal->min_real;
-	c->imag = y * (range_i / HEIGHT) + fractal->min_imag;
+	range_r = info->max_real - info->min_real;
+	range_i = info->max_imag - info->min_imag;
+	c->real = x * (range_r / (WIDTH - 1)) + info->min_real;
+	c->imag = info->max_imag - y * (range_i / (HEIGHT - 1));
 }
 
-int	mandelbrot_iters(t_fractol *fractal, t_real *c)
+int	mandelbrot_iters(t_fractol *info, t_real *c)
 {
 	int		iters;
 	double	temp;
@@ -59,8 +47,7 @@ int	mandelbrot_iters(t_fractol *fractal, t_real *c)
 	iters = 0;
 	z.real = 0.0;
 	z.imag = 0.0;
-	while (iters < fractal->max_iter && \
-	(z.real * z.real - z.imag * z.imag <= 4.0))
+	while (iters < info->max_iter && ft_mod(z.real, z.imag) <= 4.0)
 	{
 		temp = (z.real * z.real - z.imag * z.imag) + c->real;
 		z.imag = 2.0 * z.real * z.imag + c->imag;
@@ -70,7 +57,7 @@ int	mandelbrot_iters(t_fractol *fractal, t_real *c)
 	return (iters);
 }
 
-void	mandelbrot(t_fractol *fractal)
+void	mandelbrot(t_fractol *info)
 {
 	double	x;
 	double	y;
@@ -82,10 +69,15 @@ void	mandelbrot(t_fractol *fractal)
 	{
 		while (x < WIDTH)
 		{
-			calcular_mandelbrot(fractal, &c, x, y);
-			fractal->iters = mandelbrot_iters(fractal, &c);
-			fractal->color = color(fractal->iters);
-			mlx_put_pixel(fractal->img, x, y, fractal->color);
+			calcular_mandelbrot(info, &c, x, y);
+			info->iters = mandelbrot_iters(info, &c);
+			if (info->iters == info->max_iter)
+				mlx_put_pixel(info->img, x, y, 0x2f2f2fFF);
+			else
+			{
+				info->color = color(info->iters);
+				mlx_put_pixel(info->img, x, y, info->color);
+			}
 			x++;
 		}
 		x = 0;

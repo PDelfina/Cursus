@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:44:14 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/05 11:00:56 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/09 15:40:08 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 int	main(int argc, char **argv)
 {
-	t_fractol	fractal;
-	t_real		con;
+	t_fractol	info;
 
-	if (check_fractal(argc, argv, &fractal, &con) == 0)
+	// printf("%s %s\n", argv[0], argv[1]);
+	if (check_fractal(argc, argv, &info) == 0)
 		return (EXIT_FAILURE);
-	declaring(&fractal);
-	print_fractal(&fractal);
-	if (mlx_image_to_window(fractal.mlx, fractal.img, 0, 0) < 0)
+	print_fractal(&info, argv);
+	if (mlx_image_to_window(info.mlx, info.img, 0, 0) < 0)
 		exit(EXIT_FAILURE);
-	mlx_loop_hook(fractal.mlx, ft_hook, fractal.mlx);
-	mlx_loop(fractal.mlx);
-	mlx_terminate(fractal.mlx);
+	mlx_loop_hook(info.mlx, ft_hook, &info);
+	mlx_loop(info.mlx);
+	mlx_terminate(info.mlx);
 	return (EXIT_SUCCESS);
 }
