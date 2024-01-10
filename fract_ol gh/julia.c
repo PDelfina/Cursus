@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/09 16:07:14 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/10 15:00:47 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	julia_init(t_fractol *info, char **argv)
 	info->max_real = 1.0;
 	info->min_imag = -1.0;
 	info->max_imag = 1.0;
-	info->julia_real = ft_fatoi(0, 0.0, 1.0, argv[2]);
-	info->julia_imag = ft_fatoi(0, 0.0, 1.0, argv[3]);
+	julia_args(info, argv);
 }
 
 void	calcular_julia(t_fractol *info)
@@ -46,9 +45,10 @@ int	julia_iters(t_fractol *info)
 	double	temp;
 
 	iters = 0;
-	while (iters < info->max_iter && ft_mod(info->z_r, info->z_i) <= 4.0)
+	while (iters < info->max_iter && (ft_mod(info->z_r, info->z_i) <= 4.0))
 	{
-		temp = (info->z_r * info->z_r - info->z_i * info->z_i) + info->julia_real;
+		temp = (info->z_r * info->z_r - info->z_i * info->z_i) \
+		+ info->julia_real;
 		info->z_i = 2.0 * info->z_r * info->z_i + info->julia_imag;
 		info->z_r = temp;
 		iters++;
@@ -65,14 +65,12 @@ void	julia(t_fractol *info)
 		while (info->x < WIDTH)
 		{
 			calcular_julia(info);
-			 info->iters = julia_iters(info);
+			info->iters = julia_iters(info);
 			if (info->iters == info->max_iter)
-				mlx_put_pixel(info->img, info->x, info->y, 0x2f2f2fFF);
+				info->color = 0x2f2f2fFF;
 			else
-			{
-				info->color = color(info->iters);
-				mlx_put_pixel(info->img, info->x, info->y, info->color);
-			}
+				info->color = color_juliau(info->iters);
+			mlx_put_pixel(info->img, info->x, info->y, info->color);
 			info->x++;
 		}
 		info->x = 0;

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/09 16:09:19 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/10 12:13:29 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_fractal(t_fractol *info, char **argv)
 	}
 	else if (info->set == 2)
 	{
-		julia_init(info, argv);	
+		julia_init(info, argv);
 		julia(info);
 	}
 	else
@@ -49,4 +49,18 @@ int	check_fractal(int argc, char **argv, t_fractol *info)
 		return (0);
 	}
 	return (1);
+}
+
+void	julia_args(t_fractol *info, char **argv)
+{
+	if (argv[2] && argv[3])
+	{
+		info->julia_real = ft_fatoi(0, 0.0, 1.0, argv[2]);
+		info->julia_imag = ft_fatoi(0, 0.0, 1.0, argv[3]);
+	}
+	else
+	{
+		info->julia_real = 0.35;
+		info->julia_imag = 0.35;
+	}
 }
