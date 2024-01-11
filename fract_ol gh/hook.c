@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/10 11:40:53 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:15:47 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,9 @@ void	my_keyhook(mlx_key_data_t esc, void *param)
 	info = param;
 	if (esc.key == MLX_KEY_ESCAPE && esc.action == MLX_PRESS)
 		mlx_close_window(info->mlx);
+}
+
+void	ft_scrollhook(double xdelta, double ydelta, void *param)
+{
+	
 }

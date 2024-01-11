@@ -6,54 +6,29 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/10 14:50:47 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:42:21 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int32_t	color_juliau(int iters)
+int32_t	coloresuno(int iters)
 {
-	int32_t	color;
+	int	r;
+	int	g;
+	int	b;
+	int	i;
 
-	if (iters < 2)
-		color = 0x000FFFFF;
-	else if (iters < 5)
-		color = 0x003EFFFF;
-	else if (iters < 10)
-		color = 0x0055FFFF;
-	else if (iters < 20)
-		color = 0x007CFFFF;
-	else if (iters < 50)
-		color = 0x00A6FFFF;
-	else if (iters < 90)
-		color = 0x00C1FFFF;
-	else if (iters < 120)
-		color = 0x00CDFFFF;
-	else
-		color = 0xFFFFFFFF;
-	return (color);
-}
-
-int32_t	color_juliad(int iters)
-{
-	int32_t	color;
-
-	if (iters < 2)
-		color = 0xFFFFFFFF;
-	else if (iters < 5)
-		color = 0x00CDFFFF;
-	else if (iters < 10)
-		color = 0x00C1FFFF;
-	else if (iters < 20)
-		color = 0x00A6FFFF;
-	else if (iters < 50)
-		color = 0x007CFFFF;
-	else if (iters < 90)
-		color = 0x0055FFFF;
-	else if (iters < 120)
-		color = 0x003EFFFF;
-	else
-		color = 0x000FFFFF;
-	return (color);
+	i = 0;
+	r = 255;
+	g = 0;
+	b = 0;
+	while (i <= iters && (r <= 255 && g <= 255 && b <= 255))
+	{
+		r += 0;
+		g += 10;
+		b += 10;
+		i += 1;
+	}
+	return (get_color(r, g, b, 255));
 }

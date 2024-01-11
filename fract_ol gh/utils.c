@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/10 14:31:23 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/11 11:23:32 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,9 @@ double	ft_fatoi(int i, double n, double t, char *str)
 int	ft_mod(double z_real, double z_imag)
 {
 	return ((z_real * z_real) + (z_imag * z_imag));
+}
+
+int	get_color(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
 }

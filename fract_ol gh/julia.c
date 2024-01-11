@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/10 15:00:47 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/11 14:53:52 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ int	julia_iters(t_fractol *info)
 
 void	julia(t_fractol *info)
 {
+	int i;
+	int cont;
+	
+	i = 0;
+	cont = 0;
 	info->x = 0;
 	info->y = 0;
 	while (info->y < HEIGHT)
@@ -69,7 +74,7 @@ void	julia(t_fractol *info)
 			if (info->iters == info->max_iter)
 				info->color = 0x2f2f2fFF;
 			else
-				info->color = color_juliau(info->iters);
+				info->color = coloresuno(info->iters);
 			mlx_put_pixel(info->img, info->x, info->y, info->color);
 			info->x++;
 		}

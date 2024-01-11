@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/10 14:38:46 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/11 16:39:55 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	mandelbrot_init(t_fractol	*info)
 	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
 	if (!info->img)
 		exit(EXIT_FAILURE);
-	info->max_iter = 200;
+	info->max_iter = 50;
 	info->min_real = -2.0;
 	info->max_real = 1.0;
 	info->min_imag = -1.0;
@@ -71,7 +71,7 @@ void	mandelbrot(t_fractol *info)
 			if (info->iters == info->max_iter)
 				info->color = 0x2f2f2fFF;
 			else
-				info->color = color_mandelbrotd(info->iters);
+				info->color = coloresuno(info->iters);
 			mlx_put_pixel(info->img, info->x, info->y, info->color);
 			info->x++;
 		}

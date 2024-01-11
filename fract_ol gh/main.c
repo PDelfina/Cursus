@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:44:14 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/10 12:11:40 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/11 17:23:28 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	if (mlx_image_to_window(info.mlx, info.img, 0, 0) < 0)
 		exit(EXIT_FAILURE);
 	mlx_loop_hook(info.mlx, ft_hook, &info);
+	mlx_scroll_hook(info.mlx, ft_scrollhook, info);
 	mlx_loop(info.mlx);
 	mlx_terminate(info.mlx);
 	return (EXIT_SUCCESS);
