@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 15:22:00 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:23:15 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,17 @@ void	calcular_complex(t_fractol *info)
 
 	range_r = info->max_real - info->min_real;
 	range_i = info->max_imag - info->min_imag;
-	if (info->set == 1)
+	if (info->set == 1 || info->set == 3)
 	{
 		info->z_i = 0.0;
 		info->z_r = 0.0;
-		info->c_r = ft_esc(info->x, info->min_real, info->max_real, WIDTH) * info->zoom;
-		info->c_i = ft_esc(info->y, info->min_imag, info->max_imag, HEIGHT) * info->zoom;
+		info->c_r = info->min_real + (info->x * info->shift);
+		info->c_i = info->max_imag - (info->y * info->shift);
 	}
 	else if (info->set == 2)
 	{
-		info->z_r = ft_esc(info->x, info->min_real, info->max_real, WIDTH) \
-		* info->zoom;
-		info->z_i = ft_esc(info->y, info->min_imag, info->max_imag, HEIGHT) \
-		* info->zoom;
+		info->z_r = info->min_real + (info->x * info->shift);
+		info->z_i = info->max_imag - (info->y * info->shift);
 	}
 }
 
@@ -46,6 +44,7 @@ int	mandel_julia(t_fractol *info)
 	double	temp;
 
 	iters = 0;
+
 	while (iters < info->max_iter && ft_mod(info->z_r, info->z_i) <= 4.0)
 	{
 		temp = (info->z_r * info->z_r - info->z_i * info->z_i) + info->c_r;
@@ -65,7 +64,10 @@ void	printf_fractal(t_fractol *info)
 		while (info->x < WIDTH)
 		{
 			calcular_complex(info);
-			info->iters = mandel_julia(info);
+			if (info->set == 3)
+				info->iters = burningship_iters(info);
+			else 
+				info->iters = mandel_julia(info);
 			printimg(info);
 			info->x++;
 		}

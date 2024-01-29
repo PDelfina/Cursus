@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 14:45:58 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:21:46 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int	check_fractal(int argc, char **argv, t_fractol *info)
 			julia_args(info);
 			info->set = 2;
 		}
+		else if ((ft_strcmp(argv[1], "Burningship") || argv[1][0] == '3') \
+		&& argc == 2)
+			info->set = 3;
 		else
 		{
 			msj_error();

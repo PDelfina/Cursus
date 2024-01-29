@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 14:46:06 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/23 10:29:42 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	msj_error(void)
 	ft_printf("|-----------------------------------------|\n");
 	ft_printf("|Si quiere ejecutar Julia, escriba:       |\n");
 	ft_printf("|./fractol Julia x y  o ./fractol 2 x y   |\n");
+	ft_printf("|-----------------------------------------|\n");
+	ft_printf("|Si quiere ejecutar Burningship, escriba: |\n");
+	ft_printf("|./fractol Burningship o ./fractol 3      |\n");
 	ft_printf("|-----------------------------------------|\n");
 }
 

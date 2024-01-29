@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 15:20:58 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:17:29 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,27 @@ void	ft_mousepos(void *param)
 void	ft_scrollhook(double xdelta, double ydelta, void *param)
 {
 	t_fractol	*info;
+	int32_t		x;
+	int32_t		y;
 
 	info = param;
 	xdelta = 0;
+	mlx_get_mouse_pos(info->mlx, &x, &y);
 	if (ydelta > 0)
-		info->zoom *= 0.65;
+	{
+		info->min_real += (info->shift * WIDTH * info->zoom \
+		* ((double)x / WIDTH));
+		info->max_imag -= (info->shift * HEIGHT * info->zoom \
+		* ((double)y / WIDTH));
+		info->shift -= info->shift * info->zoom;
+	}
 	else if (ydelta < 0)
-		info->zoom *= 1.05;
+	{
+		info->min_real -= (info->shift * WIDTH * info->zoom \
+		* ((double)x / WIDTH));
+		info->max_imag += (info->shift * HEIGHT * info->zoom \
+		* ((double)y / WIDTH));
+		info->shift += info->shift * info->zoom;
+	}
 	printf_fractal(info);
 }
