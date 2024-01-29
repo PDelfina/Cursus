@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/29 15:29:23 by dparada          ###   ########.fr        #
+#    Updated: 2024/01/29 16:28:02 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ LIBFT   = lib/LIBFT
 CFLAGS  = -Wall -Wextra -Werror -g
 SRC_DIR = src/
 OBJ_DIR = obj/
-SRC_BONUS = src_bonus/
-OBJ_BONUS = obj_bonus/
+SRC_DIR_BONUS = src_bonus/
 CC      = gcc
 
 MAGENTA = \033[35;1m
@@ -32,11 +31,17 @@ CYAN    = \033[37;1m
 BOLD	= \033[1m
 RED		= \033[31;1m
 
-SRC_FILES = mandelbrot main julia print_fractal utils hook colores \
-colores_iters burningship mouse
+SRC_FILES = mandelbrot main print_fractal utils hook colores \
+colores_iters mouse
+
+SRC_FILES_BONUS = burningship_bonus colores_bonus colores_iters_bonus hook_bonus \
+main_bonus mouse_bonus mandelbrot_bonus print_fractal_bonus utils_bonus
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+
+SRC_BONUS = $(addprefix $(SRC_DIR_BONUS), $(addsuffix .c, $(SRC_FILES_BONUS)))
+OBJ_BONUS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES_BONUS)))
 
 OBJF = .cache_exists
 
@@ -55,8 +60,19 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 
+bonus:		$(OBJ_BONUS)
+			@make all -C $(LIBFT)
+			@make -C $(MLX42)
+			@$(CC) $(CFLAGS) $(OBJ_BONUS) -L$(LIBFT) -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
+			@echo "$(MAGENTA)Fract_ol bonus compiled!$(RESET)"
+
+$(OBJ_DIR)%.o: $(SRC_DIR_BONUS)%.c | $(OBJF)
+			@echo "$(BLUE)Compiling: $(RESET)$(addsuffix .c, $(SRC_FILES_BONUS))"
+			@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 			@rm -frf $(OBJ_DIR)
+			@rm -fef $(OBJ_BONUS)
 			@make clean -C $(MLX42)
 			@make clean -C $(LIBFT)
 			@echo "$(RED)Cleaning libraries MLX and LIBFT.$(RESET)"

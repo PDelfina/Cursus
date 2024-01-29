@@ -16,8 +16,8 @@
 # define WIDTH 750
 # define HEIGHT 750
 
-# include "lib/LIBFT/libft.h"
-# include "lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/LIBFT/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
 typedef struct s_color
@@ -30,12 +30,18 @@ typedef struct s_color
 	int			iters_b;
 }				t_color;
 
+typedef struct s_coor 
+{
+	double	mousex;
+	double	mousey;
+	double	newx;
+	double	newy;
+}				t_coor;
+
 typedef struct s_fractol
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img1;
-	mlx_image_t	*img2;
-	mlx_image_t	*img3;
+	mlx_image_t	*img;
 	int			iters;
 	int			set;
 	double		x;
@@ -48,6 +54,8 @@ typedef struct s_fractol
 	double		c_i;
 	double		z_r;
 	double		z_i;
+	double		j_real;
+	double		j_imag;
 	double		min_real;
 	double		max_real;
 	double		min_imag;
@@ -67,26 +75,18 @@ double	ft_esc(double coor, double new_min, double new_max, double old_max);
 int		mandel_julia(t_fractol *info);
 void	julia_args(t_fractol *info);
 
-int		burningship_iters(t_fractol *info);
-
 int32_t	coloresuno(t_color *rango, int iters);
 void	printimg(t_fractol *info);
 void	colores_red(t_color *rango);
 void	colores_vio(t_color *rango);
 void	colores_blu(t_color *rango);
 int		get_color(int r, int g, int b, int a);
-
-//utils
 int		ft_strcmp(char *s1, char *s2);
 double	ft_fatoi(int i, double n, double t, char *str);
 int		ft_mod(double z_real, double z_imag);
 void	msj_error(void);
-
-//hooks
 void	ft_hook(void *param);
 void	my_keyhook(mlx_key_data_t esc, void *param);
 void	ft_scrollhook(double xdelta, double ydelta, void *param);
-void	ft_keyboard(mlx_key_data_t keys, t_fractol *info);
-void	ft_mousepos(void *param);
 
 #endif

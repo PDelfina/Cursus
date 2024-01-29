@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burningship.c                                      :+:      :+:    :+:   */
+/*   burningship_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 13:59:30 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 16:29:45 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fractol.h"
+#include "../include/fractol_bonus.h"
 
 int	burningship_iters(t_fractol *info)
 {
@@ -40,7 +40,9 @@ void	burningship(t_fractol *info)
 		{
 			calcular_complex(info);
 			if (info->set == 1)
-			info->iters = burningship_iters(info);
+				info->iters = burningship_iters(info);
+			else
+				info->iters = mandel_julia(info);
 			printimg(info);
 			info->x++;
 		}

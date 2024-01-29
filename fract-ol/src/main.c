@@ -6,11 +6,11 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:44:14 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 15:19:23 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 16:29:20 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fractol.h"
+#include "../include/fractol.h"
 
 // void	leaks(void)
 // {
