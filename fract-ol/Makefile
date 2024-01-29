@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/25 10:49:24 by dparada          ###   ########.fr        #
+#    Updated: 2024/01/29 15:29:23 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ LIBFT   = lib/LIBFT
 CFLAGS  = -Wall -Wextra -Werror -g
 SRC_DIR = src/
 OBJ_DIR = obj/
+SRC_BONUS = src_bonus/
+OBJ_BONUS = obj_bonus/
 CC      = gcc
 
 MAGENTA = \033[35;1m

@@ -72,7 +72,6 @@ void	printf_fractal(t_fractol *info);
 void	calcular_complex(t_fractol *info);
 double	ft_esc(double coor, double new_min, double new_max, double old_max);
 
-
 int		mandel_julia(t_fractol *info);
 void	julia_args(t_fractol *info);
 
@@ -89,9 +88,5 @@ void	msj_error(void);
 void	ft_hook(void *param);
 void	my_keyhook(mlx_key_data_t esc, void *param);
 void	ft_scrollhook(double xdelta, double ydelta, void *param);
-void	ft_keyboard(mlx_key_data_t keys, t_fractol *info);
-void	ft_mousepos(void *param);
-void 	mouse_pos(t_fractol *info, t_coor *ejes);
-double	ft_esc_dos(double coor, double new_min, double new_max);
 
 #endif

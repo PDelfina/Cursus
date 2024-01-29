@@ -1,11 +1,2 @@
-TERMINAR MLX
--zoom con el raton
--agarrar x,y
--escalarlos
-y utilizarlos para el zoom
-void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
-
--julia que cambia, agarrar x,y escalar y convertirlos en julia real e imag 
-crear boton que active y desactive el mouse_mode_ts
-
-//chico que sabe cosas fragarci
+agregar bonus a makefile y libreria
+comprobar funcioanmientp
