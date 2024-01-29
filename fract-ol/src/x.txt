@@ -1,0 +1,8 @@
+	// ejes.newx = ejes.mousex - info->shift_x * info->zoom;
+	// ejes.newy = ejes.mousey - info->shift_y * info->zoom;
+	// info->shift_x += ejes.newx * zoom;
+	// info->shift_y += ejes.newy * zoom;
+	// ejes.mousex = ft_esc(ejes.mousex, info->min_real, info->max_real, WIDTH) \
+	// * info->zoom;
+	// ejes.mousey = ft_esc(ejes.mousey, info->min_imag, info->max_imag, HEIGHT) \
+	// * info->zoom;
