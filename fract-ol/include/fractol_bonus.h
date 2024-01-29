@@ -16,8 +16,8 @@
 # define WIDTH 750
 # define HEIGHT 750
 
-# include "lib/LIBFT/libft.h"
-# include "lib/MLX42/include/MLX42/MLX42.h"
+# include "../lib/LIBFT/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
 typedef struct s_color

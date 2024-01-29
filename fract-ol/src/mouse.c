@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 16:29:26 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 17:00:25 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,14 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 	else if (ydelta < 0)
 		info->zoom *= 0.85;
 	printf_fractal(info);
+}
+
+void	msj_usage(void)
+{
+	ft_printf("|----------------------------------------------------------|\n");
+	ft_printf("|Utilice el raton para hacer zoom.                         |\n");
+	ft_printf("|Utilice ESC para salir del programa.                      |\n");
+	ft_printf("|Utilice el + de la derecha para aumentar las iteraciones  |\n");
+	ft_printf("|Utilice el - de la derecha para disminuir las iteraciones.|\n");
+	ft_printf("|----------------------------------------------------------|\n");
 }

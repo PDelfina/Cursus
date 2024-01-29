@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/29 16:28:02 by dparada          ###   ########.fr        #
+#    Updated: 2024/01/29 17:01:31 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ CYAN    = \033[37;1m
 BOLD	= \033[1m
 RED		= \033[31;1m
 
-SRC_FILES = mandelbrot main print_fractal utils hook colores \
+SRC_FILES = fractals main print_fractal utils hook colores \
 colores_iters mouse
 
 SRC_FILES_BONUS = burningship_bonus colores_bonus colores_iters_bonus hook_bonus \
-main_bonus mouse_bonus mandelbrot_bonus print_fractal_bonus utils_bonus
+main_bonus mouse_bonus fractals_bonus print_fractal_bonus utils_bonus
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -90,11 +90,12 @@ re: fclean all
 			@echo "$(YELLOW)Fract_ol recompiled$(RESET)"
 
 norm:
-			@echo "$(YELLOW)Norminette of Fract_ol files.$(RESET)"
+			@echo "$(YELLOW)Norminette of Fract_ol files & BONUS.$(RESET)"
 			@norminette $(SRC)
+			@norminette $(SRC_BONUS)
 			@echo 
 			@echo "$(YELLOW)Norminette of LIBFT.$(RESET)"
 			@norminette $(LIBFT)
 						
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re norm bonus
 

@@ -1,3 +1,2 @@
-colores mandatorio
 agregar bonus a makefile y libreria
 comprobar funcioanmientp

@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 16:29:05 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 16:55:46 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	printimg(t_fractol *info)
 	}
 	else
 	{
-		colores_blu(&color);
 		info->color = coloresuno(&color, info->iters);
 		mlx_put_pixel(info->img, info->x, info->y, info->color);
 	}

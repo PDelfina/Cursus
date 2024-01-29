@@ -6,16 +6,11 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:44:14 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 16:29:20 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 17:01:42 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
-
-// void	leaks(void)
-// {
-// 	system("leaks fractol");
-// }
 
 void	fractal_init(t_fractol *info)
 {
@@ -39,13 +34,13 @@ int	main(int argc, char **argv)
 	t_fractol	info;
 
 	info.argv = argv;
-	// atexit(leaks);
 	fractal_init(&info);
 	if (check_fractal(argc, argv, &info) == 0)
 		return (EXIT_FAILURE);
 	printf_fractal(&info);
 	if (mlx_image_to_window(info.mlx, info.img, 0, 0) < 0)
 		exit(EXIT_FAILURE);
+	msj_usage();
 	mlx_key_hook(info.mlx, &my_keyhook, &info);
 	mlx_scroll_hook(info.mlx, &ft_scrollhook, &info);
 	mlx_loop_hook(info.mlx, &ft_hook, &info);

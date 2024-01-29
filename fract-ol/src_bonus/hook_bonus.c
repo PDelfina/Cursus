@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 16:29:57 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 17:02:05 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ void	ft_keyboard(mlx_key_data_t keys, t_fractol *info)
 void	ft_move_key(t_fractol *info)
 {
 	if (mlx_is_key_down(info->mlx, MLX_KEY_RIGHT))
-	{
-		info->min_real += 0.20;
-		info->max_real += 0.20;
-	}
+		info->min_real += info->shift * info->zoom * WIDTH / 2;
 	else if (mlx_is_key_down(info->mlx, MLX_KEY_LEFT))
 		info->min_real -= info->shift * info->zoom * WIDTH / 2;
 	else if (mlx_is_key_down(info->mlx, MLX_KEY_UP))

@@ -30,14 +30,6 @@ typedef struct s_color
 	int			iters_b;
 }				t_color;
 
-typedef struct s_coor 
-{
-	double	mousex;
-	double	mousey;
-	double	newx;
-	double	newy;
-}				t_coor;
-
 typedef struct s_fractol
 {
 	mlx_t		*mlx;
@@ -88,5 +80,7 @@ void	msj_error(void);
 void	ft_hook(void *param);
 void	my_keyhook(mlx_key_data_t esc, void *param);
 void	ft_scrollhook(double xdelta, double ydelta, void *param);
+void	msj_usage(void);
+void	ft_mousepos(void *param);
 
 #endif
