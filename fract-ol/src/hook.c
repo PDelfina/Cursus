@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 13:25:18 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:17:05 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	my_keyhook(mlx_key_data_t keys, void *param)
 	else
 		ft_keyboard(keys, info);
 	ft_mousepos(info);
-	pick_fractal(info);
+	printf_fractal(info);
 }
 
 void	ft_keyboard(mlx_key_data_t keys, t_fractol *info)
@@ -73,7 +73,9 @@ void	ft_move_key(t_fractol *info)
 {
 	if (mlx_is_key_down(info->mlx, MLX_KEY_RIGHT))
 	{
-		info->min_real += info->shift * info->zoom * WIDTH / 2;
+		info->min_real += 0.20;
+		info->max_real += 0.20;
+	}
 	else if (mlx_is_key_down(info->mlx, MLX_KEY_LEFT))
 		info->min_real -= info->shift * info->zoom * WIDTH / 2;
 	else if (mlx_is_key_down(info->mlx, MLX_KEY_UP))

@@ -74,13 +74,11 @@ void	pick_fractal(t_fractol *info);
 void	calcular_complex(t_fractol *info);
 double	ft_esc(double coor, double new_min, double new_max, double old_max);
 
-void	mandelbrot(t_fractol *info);
-int		mandelbrot_iters(t_fractol *info);
-void	julia(t_fractol *info);
+void	printf_fractal(t_fractol *info);
+int		mandelbrot(t_fractol *info);
 void	julia_args(t_fractol *info);
 int		julia_iters(t_fractol *info);
 
-void	burningship(t_fractol *info);
 int		burningship_iters(t_fractol *info);
 
 int32_t	coloresuno(t_color *rango, int iters);

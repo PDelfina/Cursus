@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 11:55:30 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 13:59:30 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	burningship(t_fractol *info)
 		while (info->x < WIDTH)
 		{
 			calcular_complex(info);
+			if (info->set == 1)
 			info->iters = burningship_iters(info);
 			printimg(info);
 			info->x++;

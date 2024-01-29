@@ -6,21 +6,11 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/26 12:50:33 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:21:46 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
-
-void	pick_fractal(t_fractol *info)
-{
-	if (info->set == 1)
-		mandelbrot(info);
-	else if (info->set == 2)
-		julia(info);
-	else if (info->set == 3)
-		burningship(info);
-}
 
 int	check_fractal(int argc, char **argv, t_fractol *info)
 {
@@ -59,12 +49,12 @@ void	julia_args(t_fractol *info)
 	info->max_imag = 1.5;
 	if (info->argv[2] && info->argv[3])
 	{
-		info->j_real = ft_fatoi(0, 0.0, 1.0, info->argv[2]);
-		info->j_imag = ft_fatoi(0, 0.0, 1.0, info->argv[3]);
+		info->c_r = ft_fatoi(0, 0.0, 1.0, info->argv[2]);
+		info->c_i = ft_fatoi(0, 0.0, 1.0, info->argv[3]);
 	}
 	else
 	{
-		info->j_real = 0.35;
-		info->j_imag = 0.35;
+		info->c_r = 0.35;
+		info->c_i = 0.35;
 	}
 }
