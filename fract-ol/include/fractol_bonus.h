@@ -88,5 +88,5 @@ void	my_keyhook(mlx_key_data_t esc, void *param);
 void	ft_scrollhook(double xdelta, double ydelta, void *param);
 void	ft_keyboard(mlx_key_data_t keys, t_fractol *info);
 void	ft_mousepos(void *param);
-
+void	msj_usage(void);
 #endif

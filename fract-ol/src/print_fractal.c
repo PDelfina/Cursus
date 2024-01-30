@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:05:41 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 16:29:30 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/30 10:43:15 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	check_fractal(int argc, char **argv, t_fractol *info)
 {
 	if (argc > 1)
 	{
-		if ((ft_strcmp(argv[1], "Mandelbrot") || argv[1][0] == '1') \
+		if ((ft_strcmp(argv[1], "Mandelbrot") || ft_strcmp(argv[1], "1")) \
 		&& argc == 2)
 			info->set = 1;
-		else if ((ft_strcmp(argv[1], "Julia") || argv[1][0] == '2'))
+		else if ((ft_strcmp(argv[1], "Julia") || ft_strcmp(argv[1], "2")))
 		{
 			julia_args(info);
 			info->set = 2;

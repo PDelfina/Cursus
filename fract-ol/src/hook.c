@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 17:00:50 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/30 10:22:30 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ void	my_keyhook(mlx_key_data_t keys, void *param)
 		info->max_iter += 20;
 	else if (mlx_is_key_down(info->mlx, MLX_KEY_KP_SUBTRACT))
 		info->max_iter -= 20;
-	ft_mousepos(info);
 	printf_fractal(info);
 }

@@ -6,7 +6,7 @@
 #    By: dparada <dparada@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/29 17:01:31 by dparada          ###   ########.fr        #
+#    Updated: 2024/01/30 10:32:06 by dparada          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,29 +47,38 @@ OBJF = .cache_exists
 
 all: $(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	compiling $(OBJ)
+			@echo
 			@make all -C $(LIBFT)
+			@echo "$(GREEN)Compiling MLX42$(RESET)"
 			@make -C $(MLX42)
 			@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
 			@echo "$(MAGENTA)Fract_ol compiled!$(RESET)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@echo "$(BLUE)Compiling: $(RESET)$(addsuffix .c, $(SRC_FILES))"
+			@echo "$(BLUE)Compiling: $(RESET)$(notdir $<)"
 			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 
-bonus:		$(OBJ_BONUS)
+bonus:		compiling_bonus $(OBJ_BONUS)
+			@echo
 			@make all -C $(LIBFT)
+			@echo "$(GREEN)Compiling MLX42$(RESET)"
 			@make -C $(MLX42)
 			@$(CC) $(CFLAGS) $(OBJ_BONUS) -L$(LIBFT) -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
 			@echo "$(MAGENTA)Fract_ol bonus compiled!$(RESET)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR_BONUS)%.c | $(OBJF)
-			@echo "$(BLUE)Compiling: $(RESET)$(addsuffix .c, $(SRC_FILES_BONUS))"
+			@echo "$(BLUE)Compiling: $(RESET)$(notdir $<)"
 			@$(CC) $(CFLAGS) -c $< -o $@
 
+compiling:
+			@echo "$(YELLOW)Compiling FRACT-OL!$(RESET)"
+
+compiling_bonus:
+			@echo "$(YELLOW)Compiling FRACT-OL bonus!$(RESET)"
 clean:
 			@rm -frf $(OBJ_DIR)
 			@rm -fef $(OBJ_BONUS)
@@ -77,6 +86,7 @@ clean:
 			@make clean -C $(LIBFT)
 			@echo "$(RED)Cleaning libraries MLX and LIBFT.$(RESET)"
 			@echo "$(RED)Cleaning fract_ol executables.$(RESET)"
+			
 
 fclean:
 			@rm -rf $(OBJ_DIR)
@@ -97,5 +107,5 @@ norm:
 			@echo "$(YELLOW)Norminette of LIBFT.$(RESET)"
 			@norminette $(LIBFT)
 						
-.PHONY: all clean fclean re norm bonus
+.PHONY: all clean fclean re norm bonus compiling compiling_bonus
 

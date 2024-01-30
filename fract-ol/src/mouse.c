@@ -6,7 +6,7 @@
 /*   By: dparada <dparada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:27:25 by dparada           #+#    #+#             */
-/*   Updated: 2024/01/29 17:00:25 by dparada          ###   ########.fr       */
+/*   Updated: 2024/01/30 10:40:09 by dparada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 	if (ydelta > 0)
 		info->zoom *= 1.05;
 	else if (ydelta < 0)
-		info->zoom *= 0.85;
+		info->zoom *= 0.95;
 	printf_fractal(info);
 }
 
